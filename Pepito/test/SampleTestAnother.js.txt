@@ -1,0 +1,177 @@
+var HashMarket = artifacts.require("HashMarket.sol");
+
+contract("HashMarket", function(accounts) {
+    it("should add a new product", function() {
+
+        // Set the names of test data
+        var itemName = "TestItem";
+        var itemPrice = 1000;
+        var itemSeller = accounts[0];
+
+        // Since all of our testing functions are async, we store the
+        // contract instance at a higher level to enable access from
+        // all functions
+        var hashMarketContract;
+
+        // Item ID will be provided asynchronously so we extract it
+        var itemID;
+
+        return HashMarket.deployed().then(function(instance) {
+            // set contract instance into a variable
+            hashMarketContract = instance;
+
+            // Subscribe to a Solidity event
+            instance.ItemAdded({}).watch((error, result) => {
+                if (error) {
+                    console.log(error);
+                }
+                // Once the event is triggered, store the result in the
+                // external variable
+                itemID = result.args.itemID;
+            });
+
+            // Call the addNewItem function and return the promise
+            return instance.addNewItem(itemName, itemPrice, {from: itemSeller});
+        }).then(function() {
+            // This function is triggered after the addNewItem call transaction
+            // has been mined. Now call the getItem function with the itemID
+            // we received from the event
+            return hashMarketContract.getItem.call(itemID);
+        }).then(function(result) {
+            // The result of getItem is a tuple, we can deconstruct it
+            // to variables like this
+            var [name, price, seller, status] = result;
+
+            // Start testing. Use web3.toAscii() to convert the result of
+            // the smart contract from Solidity bytecode to ASCII. After that
+            // use the .replace() to pad the excess bytes from bytes32
+            assert.equal(itemName, web3.toAscii(name).replace(/\u0000/g, ''), "Name wasn't properly added");
+            // Use assert.equal() to check all the variables
+            assert.equal(itemPrice, price, "Price wasn't properly added");
+            assert.equal(itemSeller, seller, "Seller wasn't properly added");
+            assert.equal(status, 0, "Status wasn't properly added");
+        });
+    });
+});
+
+/** Solidity code to test
+pragma solidity 0.4.21;
+
+contract HashMarket {
+
+    // Track the state of the items, while preserving history
+    enum ItemStatus {
+        active,
+        sold,
+        removed
+    }
+
+    struct Item {
+        bytes32 name;
+        uint price;
+        address seller;
+        ItemStatus status;
+    }
+
+    event ItemAdded(bytes32 name, uint price, address seller);
+    event ItemPurchased(uint itemID, address buyer, address seller);
+    event ItemRemoved(uint itemID);
+    event FundsPulled(address owner, uint amount);
+
+    Item[] private _items;
+    mapping (address => uint) public _pendingWithdrawals;
+
+    modifier onlyIfItemExists(uint itemID) {
+        require(_items[itemID].seller != address(0));
+        _;
+    }
+
+    function addNewItem(bytes32 name, uint price) public returns (uint) {
+
+        _items.push(Item({
+            name: name,
+            price: price,
+            seller: msg.sender,
+            status: ItemStatus.active
+        }));
+
+        emit ItemAdded(name, price, msg.sender);
+        // Item is pushed to the end, so the lenth is used for
+        // the ID of the item
+        return _items.length - 1;
+    }
+
+    function getItem(uint itemID) public view onlyIfItemExists(itemID)
+    returns (bytes32, uint, address, uint) {
+
+        Item storage item = _items[itemID];
+        return (item.name, item.price, item.seller, uint(item.status));
+    }
+
+    function buyItem(uint itemID) public payable onlyIfItemExists(itemID) {
+
+        Item storage currentItem = _items[itemID];
+
+        require(currentItem.status == ItemStatus.active);
+        require(currentItem.price == msg.value);
+
+        _pendingWithdrawals[currentItem.seller] = msg.value;
+        currentItem.status = ItemStatus.sold;
+
+        emit ItemPurchased(itemID, msg.sender, currentItem.seller);
+    }
+
+    function removeItem(uint itemID) public onlyIfItemExists(itemID) {
+        Item storage currentItem = _items[itemID];
+
+        require(currentItem.seller == msg.sender);
+        require(currentItem.status == ItemStatus.active);
+
+        currentItem.status = ItemStatus.removed;
+
+        emit ItemRemoved(itemID);
+    }
+
+    function pullFunds() public returns (bool) {
+        require(_pendingWithdrawals[msg.sender] > 0);
+
+        uint outstandingFundsAmount = _pendingWithdrawals[msg.sender];
+
+        if (msg.sender.send(outstandingFundsAmount)) {
+            emit FundsPulled(msg.sender, outstandingFundsAmount);
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+*/
+
+/** Solidity test contract code
+contract TestHashMarket {
+
+    function testAddingNewProduct() public {
+        // DeployedAddresses.HashMarket() handles contract address
+        // management for us
+        HashMarket market = HashMarket(DeployedAddresses.HashMarket());
+
+        bytes32 expectedName = "T";
+        uint expectedPrice = 1000;
+
+        uint itemID = market.addNewItem(expectedName, expectedPrice);
+
+        bytes32 name;
+        uint price;
+        address seller;
+        uint status;
+
+        (name, price, seller, status) = market.getItem(itemID);
+
+        Assert.equal(name, expectedName, "Item name should match");
+        Assert.equal(price, expectedPrice, "Item price should match");
+        Assert.equal(status, uint(HashMarket.ItemStatus.active), "Item status at creation should be .active");
+        Assert.equal(seller, this, "The function caller should be the seller");
+    }
+
+}
+*/

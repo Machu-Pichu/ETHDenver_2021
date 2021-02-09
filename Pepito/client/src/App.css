@@ -1,0 +1,53 @@
+.container {
+  max-width: 52em;
+  margin: auto;
+  text-align: center;
+  background-color: #f8fff3;
+}
+
+h1 {
+  position: relative;
+}
+
+h1 sup {
+  position: absolute;
+  font-size: 0.4em;
+  font-style: italic;
+  color: red;
+}
+
+.spinner div {
+  margin: 2em auto;
+}
+
+table {
+  width: 65%;
+  margin: auto;
+  text-align: center;
+  border-collapse: separate;
+}
+
+tr td {
+  text-align: center;
+  font-size: 60%;
+  overflow-wrap: break-word;
+  width: 60%;
+}
+
+.tdaddr {
+  color: #e1efd8;
+  font-size:xx-small;
+}
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+p small {
+    font-size: 60%;
+  }
+    
+p large {
+font-size: 160%;
+}

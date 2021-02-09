@@ -1,0 +1,244 @@
+import { AssertionError } from "assert"
+
+require('chai')
+.use(require('chai-as-promised'))
+.should()
+
+const Marketplace = artifacts.require('./Marketplace.sol')
+
+contract('Marketplace',([deployer,seller,buyer]) => {
+    let marketplace
+
+    before(async ()=>{
+        marketplace=await Marketplace.deployed()
+    })
+
+    describe('Deployment', async () =>{
+
+        it('DApp is deployed successfully', async() =>{
+        const address = await marketplace.address
+
+    })
+        it('DApp Has a name', async () =>{
+            const name=await marketplace.name()
+            assert.equal(name,'Consensys Marketplace')
+        })
+
+        it('Deployed Address is not undefined', async () =>{
+            const address = await marketplace.address
+         
+            assert.notEqual(address,undefined)
+        })
+
+
+        it('Deployed Address is not equal to zero', async () =>{
+            const address = await marketplace.address
+         
+            assert.notEqual(address,0x0)
+        })
+		
+		it('Deployed Address is not equal to null', async () =>{
+            const address = await marketplace.address
+         
+             assert.notEqual(address,null)
+        })
+		
+		it('Deployed Address is not Blank', async () =>{
+            const address = await marketplace.address
+         
+             assert.notEqual(address,'')
+        })
+
+    })
+
+
+    describe('products', async () =>{
+        let result, productCount
+
+        before(async ()=>{
+           result=await marketplace.createProduct('Bullet', web3.utils.toWei('1','ether'), { from:seller })
+           productCount = await marketplace.productCount()
+        })
+
+        it('creates a new product with name & price in ETH', async () =>{
+           assert.equal(productCount,1)
+           //console.log(result.logs)
+
+           const event=result.logs[0].args
+           assert.equal(event.id.toNumber(),productCount.toNumber(),'Id is correct')
+           assert.equal(event.name,'Bullet','name is correct')
+           assert.equal(event.price,'1000000000000000000','price is correct')
+           assert.equal(event.owner,seller,'owner is correct')
+           assert.equal(event.purchased,false,'purchased is correct')
+
+
+            //failed
+            await marketplace.createProduct('',web3.utils.toWei('1','Ether'), {from:seller}).should.be.rejected;
+            await marketplace.createProduct('Bullet','', {from:seller}).should.be.rejected;
+
+        })
+
+        it('list all the products', async () =>{
+            const product= await marketplace.products(productCount)
+
+           assert.equal(product.id.toNumber(),productCount.toNumber(),'Id is correct')
+           assert.equal(product.name,'Bullet','name is correct')
+           assert.equal(product.price,'1000000000000000000','price is correct')
+           assert.equal(product.owner,seller,'owner is correct')
+           assert.equal(product.purchased,false,'purchased is correct')
+        })
+
+        it('sells a product to buyer', async () => {
+
+            //check seller balance
+
+            let oldSellerBalance;
+            oldSellerBalance= await web3.eth.getBalance(seller)
+            oldSellerBalance= new web3.utils.BN(oldSellerBalance)
+
+            //success
+            result =await marketplace.purchaseProduct(productCount,{from:buyer, value:web3.utils.toWei('1','Ether')})
+            
+            //event logs
+            const event= await result.logs[0].args
+            assert.equal(event.id.toNumber(),productCount.toNumber(),'id is correct')
+            assert.equal(event.name,'Bullet','name is correct')
+            assert.equal(event.price,'1000000000000000000','price is correct')
+            assert.equal(event.owner,buyer,'owner is correct')
+            assert.equal(event.purchased,true,'purchased is correc')
+
+            //amount transferred to seller
+            let newSellerBalance
+            newSellerBalance=await web3.eth.getBalance(seller)
+            newSellerBalance=new web3.utils.BN(newSellerBalance)
+
+            let price
+            price= await web3.utils.toWei('1','Ether')
+            price= new web3.utils.BN(price)
+
+            //console.log(oldSellerBalance, newSellerBalance,price)
+            const expectedBalance = oldSellerBalance.add(price)
+            assert.equal(expectedBalance.toString(),newSellerBalance.toString())
+
+            //Product exist
+
+            await marketplace.purchaseProduct(99, {from:buyer, value:web3.utils.toWei('1','Ether')}).should.be.rejected;
+            await marketplace.purchaseProduct(productCount, {from:buyer, value:web3.utils.toWei('0.1','Ether')}).should.be.rejected;
+            await marketplace.purchaseProduct(productCount,{from:deployer, value:web3.utils.toWei('1','ether')}).should.be.rejected;
+            await marketplace.products(productCount,{from:buyer, value:web3.utils.toWei('1','Ether')}).should.be.rejected;
+
+
+        })
+    })
+
+})
+
+/*
+// SPDX-License-Identifier: MIT
+
+pragma solidity 0.7.0;
+
+import "./Owner.sol";
+import "./Circuit_Breaker.sol";
+import "./Mortal.sol";
+
+/// @title Marketplace
+/// @author Shailendra Kumar Omkar
+/// @notice You can use this contract for creating & purchasing Products
+/// @dev All function calls are currently implemented without side effects
+contract Marketplace is Owner, Circuit_Breaker, Mortal{
+
+/// @notice It keeps the counter track of Product which are added
+/// @dev Initializing with zero
+    uint public productCount=0;
+
+///DApp Name
+string public name;
+
+/// Create a struct named Product.
+/// It contain Product details -  id, name, price, owner, purchased
+    struct Product{
+        uint id;
+        string name;
+        uint price;
+        address payable owner;
+        bool purchased;
+    }
+
+
+/// Create a Public mapping that maps ProductCount (a number) to an Product (struct)
+
+    mapping(uint => Product) public products;
+
+/// @notice Create event ProductCreated for EVM logging
+/// @dev This event will be emitted when a new Product has been created
+
+    event ProductCreated(
+        uint id,
+        string name,
+        uint price,
+        address payable owner,
+        bool purchased
+    );
+
+/// @notice Create event ProductPurchased for EVM logging
+/// @dev This event will be emitted when a Product has been purchased
+
+event ProductPurchased(
+        uint id,
+        string name,
+        uint price,
+        address payable owner,
+        bool purchased
+    );
+
+/*Initialsing DApp Name & owner in constructor
+    */
+constructor() {
+    
+        owner = msg.sender;
+        name="Consensys Marketplace";
+    }
+
+/// @notice Creating a Product
+/// @dev It will validate Product Name length & Product Price value
+/// @param _name Product Name  _price Product Price
+    function createProduct(string memory _name, uint _price) public notPaused  {
+    
+        require(bytes(_name).length>0 ,"Product Name should be a valid name of length greater than zero");
+        require(_price >0,"Product Price must be greater than zero");
+
+        productCount++;
+        products[productCount] = Product(productCount,_name,_price, msg.sender,false);
+
+        emit ProductCreated(productCount,_name,_price, msg.sender,false);
+        
+    }
+
+/// @notice Purchasing a Product
+/// @dev It will check for valid Product Id, 
+///      Product Price to purchase
+///      Product is not already purchased
+///      Buyer is not same as seller
+/// @param _id product ID
+    function purchaseProduct(uint _id) public payable notPaused {
+    Product memory _product = products[_id];
+
+    address payable seller = _product.owner;
+
+    require(_product.id > 0 && _product.id <= productCount,"Product Id should be valid between 1 & total product count");
+    require((msg.value >= _product.price),"Buyer should have sufficient balance to purchase product");
+    require(!_product.purchased,"Product is already not purchased by Buyer");
+    require(seller != msg.sender,"Buyer is not same as seller");
+
+
+    _product.owner = msg.sender;
+    _product.purchased = true;
+    products[_id] = _product;
+
+    seller.transfer(msg.value);
+
+    emit ProductPurchased(_id,_product.name,_product.price,msg.sender,true);
+    }
+}
+*/
