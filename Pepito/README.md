@@ -119,14 +119,16 @@ We can also derive Pepito into a true humanitarian organisation management syste
 * Install node.js via brew `brew install node`
 * Navigate to the folder where you want to clone the Machu-Picchu project
 * Clone the project via `git clone https://github.com/kvutien/Machu-Picchu.git` 
-* The cloned folder is `Machu-Picchu`
-* Install the required packages, for this navigate to folder `Machu-Picchu/Pepito/client`, and run `npm install`
+* The cloned folder is `ETHDenver_2021`
+* Install the required packages: todo this, 
+  * navigate to folder `ETHDenver_2021/Pepito`, and run `npm install`
+  * navigate to folder `ETHDenver_2021/Pepito/client`, and run `npm install`
 * (as of Jan 2021) 
-  * in folder `Machu-Picchu/Pepito`, run `truffle develop`: it will generate its own ganache-like network
+  * in folder `ETHDenver_2021/Pepito`, run `truffle develop`: it will generate its own ganache-like network
   * in `truffle develop` type `migrate` (or `migrate --reset` to force a new deployment)
   * connect Metamask to the local network of `truffle develop` (should be http://127.0.0.1:9545) and import the first `truffle develop` account into Metamask
   * _note_: if Metamaks displays only one confirmation dialog when you store a disguise, you may need to reset your account. See here [https://metamask.zendesk.com/hc/en-us/articles/360015488891-Resetting-an-Account](reset metamask account)
-  * in folder `Machu-Picchu/Pepito/client`, run the app `npm run start`
+  * in folder `ETHDenver_2021/Pepito/client`, run the app `npm run start`
   * Your browser will open automatically [http://localhost:3000](http://localhost:3000) to view the app.
 * (*TODO: target setup process, to be detailed and tested*)
   * configure `truffle-config.js` with `module.exports` containing your Infura credentials and your testnet
