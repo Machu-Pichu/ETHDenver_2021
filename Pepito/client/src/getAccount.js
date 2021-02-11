@@ -5,7 +5,7 @@ var web3 = new Web3()
 
 
 //const filePath = path.join(__dirname, './.secret')
-const filePath = path.resolve('./.secret')
+const filePath = path.resolve('./client/src/.secret')
 console.log(filePath)
 
 function getAccount() {

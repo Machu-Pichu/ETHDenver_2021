@@ -59,7 +59,7 @@ class MakePepito extends React.Component{
                   console.log(privatek)
                 });
 
-                account = web3.eth.accounts.privateKeyToAccount('0xb27e384cc1baee5bfe29ba83ac00e74e10624d46f3e734410f319b776b3ae26f')
+                account = web3.eth.accounts.privateKeyToAccount('0x442e0db059ffb6321283eea82386a072fb1bee0c08bee77bb345f39098144001')
                 console.log(`Account address: ${account.address}`)
                 kit.addAccount(account.privateKey)
             }
