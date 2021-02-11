@@ -1,11 +1,19 @@
-/**  class MakePepito - project Pepito 
+/**  class MakePepito - project Pepito
  * @author Vu Tien Khang - Jan 2021
  * @notice connect to Web3 instance of Pepito, call App.connectB to store on App.state
 */
 import React from 'react';
-import getWeb3 from "./getWeb3";                    // to call web3 API
+//import getWeb3 from "./getWeb3";                    // to call web3 API
 import Pepito from "./contracts_abi/Pepito.json";   // to call web3 API
 import './App.css';
+
+const fs = require('fs');
+const path = require("path");    // used to direct creation of ABI in another directory than default
+const Web3 = require('web3')
+const ContractKit = require('@celo/contractkit')
+const web3 = new Web3('https://alfajores-forno.celo-testnet.org')
+const kit = ContractKit.newKitFromWeb3(web3)
+//const getAccount = require('./getAccount').getAccount
 
 class MakePepito extends React.Component{
     constructor() {
@@ -22,25 +30,39 @@ class MakePepito extends React.Component{
         // no need to create Pepito instance if props.web3Connected == true
         if(!this.props.web3Connected) {
             //console.log('>>>> makePepito: this.props.web3Connected', this.props.web3Connected);
-            try {
-                /**
-                 * @dev via Metamask, get blockchain network provider & web3 instance by trying several channels
-                 * @dev get the user account address
-                 */
-                this.web3 = await getWeb3();                        // use `this`to transfer web3 to the next `try` block
-                this.accounts = await this.web3.eth.getAccounts();  // use `this`to transfer accounts to the next `try` block
-            } catch (error) {
-                /// @dev catch any errors for any of the above operations.
-                alert(
-                    `Failed to load web3. Check in Metamask that this page is connected to a blockchain account. Else see browser console for error details.`,
-                );
-                console.error(error);
+            // try {
+            //     /**
+            //      * @dev via Metamask, get blockchain network provider & web3 instance by trying several channels
+            //      * @dev get the user account address
+            //      */
+            //     this.web3 = await getWeb3();                        // use `this`to transfer web3 to the next `try` block
+            //     this.accounts = await this.web3.eth.getAccounts();  // use `this`to transfer accounts to the next `try` block
+            // } catch (error) {
+            //     /// @dev catch any errors for any of the above operations.
+            //     alert(
+            //         `Failed to load web3. Check in Metamask that this page is connected to a blockchain account. Else see browser console for error details.`,
+            //     );
+            //     console.error(error);
+            // }
+            let account;
+            async function awaitWrapper(){
+                //account = await getAccount()
+//                 fs.readFile('./client/src/.secret', 'utf8', function(err, data) {
+//     if (err) throw err;
+//     console.log(data);
+// });
+
+                account = web3.eth.accounts.privateKeyToAccount('0xb27e384cc1baee5bfe29ba83ac00e74e10624d46f3e734410f319b776b3ae26f')
+                console.log(`Account address: ${account.address}`)
+                kit.addAccount(account.privateKey)
             }
+
+            awaitWrapper()
 
             try {
                 /** @dev create a Pepito singleton contract instance */
-                const web3 = this.web3;                             // get the web3 provider
-                const accounts = this.accounts;                     // get the reachable accounts
+                //const web3 = this.web3;                             // get the web3 provider
+                const accounts = account.address;                     // get the reachable accounts
                 const networkId = await web3.eth.net.getId();       // get the network ID currently connected to
                 const deployedNetwork = Pepito.networks[networkId]; // get the network object in the ABI
                 const pepitoInstance = new web3.eth.Contract(       // make an JavaScript instance of Pepito
@@ -71,7 +93,7 @@ class MakePepito extends React.Component{
     render() {
         return(
             <>
-                <button className="btn btn-lg btn-secondary mb-5" 
+                <button className="btn btn-lg btn-secondary mb-5"
                     onClick={this.makePepito}>Get blockchain interface & Pepito instance</button>
             </>
         )
