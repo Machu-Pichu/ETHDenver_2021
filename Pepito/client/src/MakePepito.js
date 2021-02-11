@@ -6,6 +6,7 @@ import React from 'react';
 //import getWeb3 from "./getWeb3";                    // to call web3 API
 import Pepito from "./contracts_abi/Pepito.json";   // to call web3 API
 import './App.css';
+import secret from './.secret';
 
 const fs = require('fs');
 const path = require("path");    // used to direct creation of ABI in another directory than default
@@ -13,7 +14,7 @@ const Web3 = require('web3')
 const ContractKit = require('@celo/contractkit')
 const web3 = new Web3('https://alfajores-forno.celo-testnet.org')
 const kit = ContractKit.newKitFromWeb3(web3)
-//const getAccount = require('./getAccount').getAccount
+const getAccount = require('./getAccount').getAccount
 
 class MakePepito extends React.Component{
     constructor() {
@@ -45,12 +46,18 @@ class MakePepito extends React.Component{
             //     console.error(error);
             // }
             let account;
+            let privatek;
+
             async function awaitWrapper(){
                 //account = await getAccount()
-//                 fs.readFile('./client/src/.secret', 'utf8', function(err, data) {
-//     if (err) throw err;
-//     console.log(data);
-// });
+
+                // This will fetch the private key from .secret file
+                fetch(secret)
+                .then(r => r.text())
+                .then(text => {
+                  privatek = text;
+                  console.log(privatek)
+                });
 
                 account = web3.eth.accounts.privateKeyToAccount('0xb27e384cc1baee5bfe29ba83ac00e74e10624d46f3e734410f319b776b3ae26f')
                 console.log(`Account address: ${account.address}`)
@@ -58,6 +65,27 @@ class MakePepito extends React.Component{
             }
 
             awaitWrapper()
+
+            //. Create Random Account Everytime
+            let randomAccount = web3.eth.accounts.create()
+            console.log(randomAccount);
+
+            // 3. Get the token contract wrappers
+            let goldtoken = await kit.contracts.getGoldToken()
+            let stabletoken = await kit.contracts.getStableToken()
+
+            // 4. Address to look up
+            let anAddress = account.address;
+
+            // 5. Get token balances
+            let celoBalance = await goldtoken.balanceOf(anAddress)
+            let cUSDBalance = await stabletoken.balanceOf(anAddress)
+
+            // Print balances
+            console.log(`${anAddress} CELO balance: ${celoBalance.toString()}`)
+            console.log(`${anAddress} cUSD balance: ${cUSDBalance.toString()}`)
+
+            //this.props.celoWallet(anAddress, celoBalance, cUSDBalance);
 
             try {
                 /** @dev create a Pepito singleton contract instance */

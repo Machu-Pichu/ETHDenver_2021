@@ -12,6 +12,7 @@
     "avataaars": "^1.1.0",
     "bignumber": "^1.1.0",
     "dotenv": "^8.2.0",
+    "fs": "0.0.1-security",
     "get-random-values": "^1.2.2",
     "openzeppelin-solidity": "^1.11.0",
     "react": "^17.0.1",

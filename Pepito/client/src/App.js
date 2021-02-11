@@ -1,4 +1,4 @@
-/**  class App - project Pepito 
+/**  class App - project Pepito
  * @author Vu Tien Khang - Jan 2021
  * @notice React root component
  * @dev refactored to move out most of the functions
@@ -12,7 +12,7 @@ import OptionTable from './OptionTable';
 class App extends Component {
     constructor() {             // constructor is called whenever App.js code is changed and saved
         super();
-        this.state = {web3Connected: false, 
+        this.state = {web3Connected: false,
             disguise:{},        // initialise disguise so that DrawAvataar has an object in first render
             web3: {},
             pepitoInstance: {},
@@ -31,6 +31,16 @@ class App extends Component {
         });
     }
 
+    // celoWallet = async (account, celo, cusd) => {
+    //   this.setState({
+    //       account: account,
+    //       celo: celo,
+    //       cusd: cusd
+    //   }, () => {
+    //     console.log ('---> celo wallet details', Object.keys(this.state), Object.values(this.state));
+    //   });
+    // }
+
     connectedB = async (web3, accounts, pepitoInstance, pepitoAddress, web3Connected, ownerPepito) => {
     /** @notice record in state the values received from makePepito.js as arguments */
         this.setState({
@@ -47,7 +57,7 @@ class App extends Component {
     }
 
     deployedDisguise = async (count, disguiseAddresses, disguiseStored) => {
-    /** @notice record in state the addresses of disguises received from DisguiseStore.js as arguments */ 
+    /** @notice record in state the addresses of disguises received from DisguiseStore.js as arguments */
         this.setState({
             disguiseCount: count,                       // count === highest rank, rank is in [1,n]
             disguiseAddresses: disguiseAddresses,       // array of addresses of PepitoDisguise contracts
@@ -76,7 +86,7 @@ class App extends Component {
                     <h1 className='m-5'>Pepito Disguise<sup>v0.1, on blockchain</sup></h1>
                 </header>
                 <div>
-                    <DisguiseControls 
+                    <DisguiseControls
                         setDisguise={this.setDisguise}              // used to return the disguise
                         connectedB={this.connectedB}                // used to return the web3 and pepito
                         pepitoAddress={this.state.pepitoAddress}    // will be displayed on screen
