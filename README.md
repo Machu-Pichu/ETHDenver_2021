@@ -45,27 +45,35 @@ Pre-requesites: Node.js & Truffle & React.js (for example by installing `npm ins
 
 2. cd to `ETHDenver_2021/Pepito` and run
 
-```npm install```
+```
+     npm install
+```
 
 3. cd to `ETHDenver_2021/Pepito/client` and run
 
-```npm install```
+```
+     npm install
+```
 
 4. cd  to `ETHDenver_2021/Pepito/client/src`and run
 
 ```javascript
-node createAccount.js
-/* this creates a new celo test account and displays the account on the console. Copy the account. */
+     node createAccount.js
+     /* this creates a new celo test account and displays the account on the console. Copy the account. */
 ```
 
 5. Go to [Alfajores test faucet](https://celo.org/developers/faucet) and fund the account
 
 6. Migrate the project to Alfajores Test network
 
-```truffle migrate —network alfajores```
+```
+     truffle migrate —network alfajores
+```
 
 7. cd to `ETHDenver_2021/Pepito/client`and run
 
-```npm run start```
+```
+     npm run start
+```
 
 Voila!
