@@ -17,24 +17,6 @@ In final the win-win situation is
 
 The amount of "Cash Voucher Assistance" (CVA) totalled $5.6bn in 2019, doubling 2016 levels and accounting for 17.9% of total humanitarian assistance. Financial services targeting the same population is 10 times this amount.
 
-## State of the project at the beginning of the ETH Denver 2021 Buidlathon
-* [demo video: https://youtu.be/4ASGvdN0B48](https://youtu.be/4ASGvdN0B48) 
-* backend working, still continuously improved
-  * truffle project
-  * implement design patterns "Circuit Breaker" and "Factory". Factory is specially useful. Circuit Breaker and Upgradeable Contracts will be also useful, but later.
-  * protect against overflow attack (SWC-101) and reentrancy attack (SWC-107), in `createPepitoDisguise()`
-  * smart contracts deployed locally using `truffle develop`
-  * (new) event 'disguiseCreated' now reports an array of all disguise addresses and the count of disguise
-* frontend operational locally
-  * React frontend
-  * interfaced with `web3.js` and Metamask, recognizes Metamask current account
-  * reflect state change in UI: displays addresses of deployed contracts
-  * (new) React frontend is refactored, disguise factory creates disguises and populates the array of addresses, event is well captured
-* git
-  * github URL: [https://github.com/kvutien/Machu-Picchu](https://github.com/kvutien/Machu-Picchu)
-  * the README doc describing the overview of your project, how to set up and run etc. is below, Setup section for MacOS.
-  * have a document called `design_pattern_decisions.md` explaining which design patterns you used.
-
 # Design
 ## Smart contract backend design
 In the following we'll specify and code a dApp to help you in this mission generating disguises for Pepito. But keep this in mind: behind this game, by simply modifying a few lines of code, each disguise can become actually a set of characteristics of a person-in-need that humanitarians can help. Because the blockchain is open, once persons-in-need are recorded, all humanitarian organisations can access the data, and these persons keep full control on these personal data.
