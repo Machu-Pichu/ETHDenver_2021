@@ -1,7 +1,7 @@
 # ETHDenver2021
-Code: [Machu Picchu entry for ETHDenver 2021](https://github.com/Machu-Pichu/ETHDenver_2021/tree/main/Pepito)
-Video: [https://www.youtube.com/watch?v=XyRA4lQtvQs](https://www.youtube.com/watch?v=XyRA4lQtvQs)
-Pitch deck: [https://docs.google.com/presentation/d/1I_tdluxRyoShOSUdQ-A_UHwGV7LZJBtlCzPSaVvxYpE](https://docs.google.com/presentation/d/1I_tdluxRyoShOSUdQ-A_UHwGV7LZJBtlCzPSaVvxYpE)
+1. Code: [Machu Picchu entry for ETHDenver 2021](https://github.com/Machu-Pichu/ETHDenver_2021/tree/main/Pepito)
+2. Video: [https://www.youtube.com/watch?v=XyRA4lQtvQs](https://www.youtube.com/watch?v=XyRA4lQtvQs)
+3. Pitch deck: [https://docs.google.com/presentation/d/1I_tdluxRyoShOSUdQ-A_UHwGV7LZJBtlCzPSaVvxYpE](https://docs.google.com/presentation/d/1I_tdluxRyoShOSUdQ-A_UHwGV7LZJBtlCzPSaVvxYpE)
 
 ## Contact
 email: kvutien.yes@gmail.com
