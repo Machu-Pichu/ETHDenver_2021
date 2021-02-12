@@ -39,7 +39,9 @@ Pre-requesites: Node.js & Truffle & React.js (for example by installing `npm ins
 
 1. On your local disk, clone [https://github.com/Machu-Pichu/ETHDenver_2021.git](https://github.com/Machu-Pichu/ETHDenver_2021.git)
 
-```git clone https://github.com/Machu-Pichu/ETHDenver_2021.git```
+```
+     git clone https://github.com/Machu-Pichu/ETHDenver_2021.git
+```
 
 2. cd to `ETHDenver_2021/Pepito` and run
 
