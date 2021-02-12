@@ -12,7 +12,7 @@ Actually, our real purpose in _Machu Picchu_ is to build a blockchain-based tool
 
 In final the win-win situation is
 * Helper institutions share the data of the persons-in-need to improve the efficiency of their incentive and aid programs
-* Persons-in-need are free to share and exchange their tokens until they decide to make it real fiat money
+* Persons-in-need are able to share and exchange their tokens until they decide to make it real fiat money
 * Any private of public entity (large or small) who targets these persons can use the data, that are not confiscated by any single actor.
 
 The amount of "Cash Voucher Assistance" (CVA) totalled $5.6bn in 2019, doubling 2016 levels and accounting for 17.9% of total humanitarian assistance. Financial services targeting the same population is 10 times this amount.
