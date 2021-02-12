@@ -33,22 +33,33 @@ Because of the technical background of [Vu Tien Khang](https://www.linkedin.com/
 
 ## Instructions
 
-Pre-requesites: Truffle & npm
+Pre-requesites: Node.js & Truffle & React.js (for example by installing `npm install -g create-react-app`
 
-1. Make a repo and clone https://github.com/rajanpaulsarella/ETHDenver_2021 
-	git clone https://github.com/rajanpaulsarella/ETHDenver_2021
-2. cd to ETHDenver_2021/Pepito
-	npm install
-3. cd to ETHDenver_2021/Pepito/client
-	npm install
-4. cd  ETHDenver_2021/Pepito/client/src
-	node createAccount.js
-	/* this creates a new celo test account and displays the account on the console. Copy the account.
-5. Go to Alfajores test faucet and fund the account
-	https://celo.org/developers/faucet
+1. On your local disk, clone [https://github.com/Machu-Pichu/ETHDenver_2021.git](https://github.com/Machu-Pichu/ETHDenver_2021.git)
+
+```git clone https://github.com/Machu-Pichu/ETHDenver_2021.git```
+
+2. cd to `ETHDenver_2021/Pepito` and run
+
+```npm install```
+
+3. cd to `ETHDenver_2021/Pepito/client` and run
+
+```npm install```
+
+4. cd  to `ETHDenver_2021/Pepito/client/src`and run
+
+```node createAccount.js```
+```/* this creates a new celo test account and displays the account on the console. Copy the account. */```
+
+5. Go to [Alfajores test faucet](https://celo.org/developers/faucet) and fund the account
+
 6. Migrate the project to Alfajores Test network
-	truffle migrate —network alfajores
-7. cd to ETHDenver_2021/Pepito/client
-	npm run start
+
+```truffle migrate —network alfajores```
+
+7. cd to `ETHDenver_2021/Pepito/client`and run
+
+```npm run start```
 
 Voila!
