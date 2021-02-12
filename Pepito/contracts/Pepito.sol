@@ -5,14 +5,14 @@ pragma solidity >=0.4.22 <0.8.0;
 /**
     @title  Pepito. Demo dApp for Machu Picchu. Also Final Project of...
     @author Vu Tien Khang
-    @notice Pepito is a Caribbian corsair. He can create up to 32 PepitoDisguise in this version
+    @notice Pepito is a Caribbian corsair. He can create up to 128 PepitoDisguise in this version
     @notice Pepito's function is similar to ENS Registry.sol, PepitoDisguise is similar to ENS Resolver.sol
     @dev    Pepito's Circuit Breaker stops creating disguises if Hernadez de La Banane discovers the trick :-)
     @dev    The circuit breaker is called to halt everything in case of serious unsolved contract exploit
     @dev    contract Pepito is a factory of disguises.
     @dev    - the main interest of a factory is to maintain an array or mapping of addresses of child contracts
     @dev    - specially useful for persons-in-need because their contract will be their virtual secretary
-    @dev        and will maintain their balance of tokens 
+    @dev        and will maintain their balance of tokens
     @dev        and will execute the few orders sent via SMS by the persons-in-need
     @dev Pepito contract only manages the array of addresses of disguise smart contracts
     @dev PepitoDisguise contract actually manages the array the disguise options, the personal data
@@ -31,12 +31,12 @@ contract Pepito {
     address public owner;           /// @dev    account that deployed Pepito
     uint256 public initialBalance;  /// @dev    initial balance of all disguises
     uint256 public disguiseCount;   /// @dev    running number of disguises in array pepitoDisguiseAddresses
-    address[32] public disguiseAddresses;    /// @dev    array of addresses of contracts pepitoDisguise
+    address[128] public disguiseAddresses;    /// @dev    array of addresses of contracts pepitoDisguise
     /// @dev    array is used because disguises will be iterated and displayed
     /// @dev    mapping may be used when disguises are transposed into people-in-need that won't be iterated
-    /// @dev    for the demo, we limit array size to 32; in real, disguises will be in IPFS database illimited number
+    /// @dev    for the demo, we limit array size to 128; in real, disguises will be in IPFS database illimited number
 
-    event PepitoDisguiseCreated(uint256 disguiseCount, address[32] disguiseAddresses);
+    event PepitoDisguiseCreated(uint256 disguiseCount, address[128] disguiseAddresses);
     event PepitoStopped(bool stopped);
 
     modifier isAdmin() {
@@ -56,12 +56,12 @@ contract Pepito {
         initialBalance = 10;    /// @dev    initial balance is 10 Pepito tokens
         disguiseCount = 0;      /// @dev    number of disguises created, maintained with SafeMath
     }
-        
+
     function createPepitoDisguise() public payable returns(PepitoDisguise) {
         /// @notice deploy an instance of PepitoDisguise with properties transferred from caller
         require (owner == msg.sender, "the transaction caller must be Pepito");
         /// @dev    future improvement: require (initialBalance != uint256(0), "initial balance of disguise cannot be zero");
-        require (disguiseCount < 32, "there has been already 32 disguises created");
+        require (disguiseCount < 128, "there has been already 128 disguises created");
         PepitoDisguise pepitoDisguise = new PepitoDisguise(owner/*, initialBalance*/);
         /// @dev    disguise is a future virtual secretary of persons-in-need, so its contract address is useful
         /// @dev    the disguise is instantiated here, will be filled by functions in pepitoDisguise()
@@ -78,7 +78,7 @@ contract Pepito {
         stopped = !stopped;
         emit PepitoStopped(stopped);
     }
-    
+
     function withdraw () onlyInEmergency public payable {
         /// @dev    withdraw balances of all tokens when situation is desperate
         /// @dev    change 'public' to 'external' to reduce gas if never called inside this contract

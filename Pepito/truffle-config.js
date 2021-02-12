@@ -17,10 +17,23 @@
  *
  */
 
-const HDWalletProvider = require("@truffle/hdwallet-provider");
-require('dotenv').config();
+// const HDWalletProvider = require("@truffle/hdwallet-provider");
+// require('dotenv').config();
 
 const path = require("path");    // used to direct creation of ABI in another directory than default
+const Web3 = require('web3')
+const ContractKit = require('./client/node_modules/@celo/contractkit')
+const web3 = new Web3('https://alfajores-forno.celo-testnet.org')
+const kit = ContractKit.newKitFromWeb3(web3)
+const getAccount = require('./client/src/getAccount').getAccount
+
+async function awaitWrapper(){
+    let account = await getAccount()
+    console.log(`Account address: ${account.address}`)
+    kit.addAccount(account.privateKey)
+}
+
+awaitWrapper()
 
 module.exports = {
 
@@ -46,31 +59,35 @@ module.exports = {
     //
     development: {
      host: "127.0.0.1",     // Localhost (default: none)
-     port: 8545,            // Standard Ganache CLI (Ganache GUI: 7545)
+     port: 7545,            // Standard Ganache CLI (Ganache GUI: 7545)
      network_id: "*",       // Any network (default: none)
     },
     test: {
       host: "127.0.0.1",     // Localhost (default: none)
-      port: 8545,            // Standard Ganache CLI Ethereum port (default: none)
+      port: 7545,            // Standard Ganache CLI Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
      },
-     "rinkeby-infura": {
-        provider: () => new HDWalletProvider(process.env.TEST_MNEMONIC, "https://rinkeby.infura.io/"+process.env.INFURA_KEY),
-        network_id: 4,       // Rinkeby's network ID
-        gas: 5500000,
-      },
-     "kovan-infura": {
-        provider: () => new HDWalletProvider(
-            process.env.TEST_MNEMONIC,
-            `https://kovan.infura.io/v3/${process.env.INFURA_KEY}`,
-            1
-        ),             // my seeded account on Metamask with Kovan ETH 
-        network_id: 42,       // Kovan's network ID
-        gas: 5500000,
-        confirmations: 2,   // # of confs to wait between deployments. (default: 0)
-        timeoutBlocks: 200, // # of blocks before a deployment times out  (minimum/default: 50)
-        skipDryRun: true    // Skip dry run before migrations? (default: false for public nets )
-      },
+     alfajores: {
+      provider: kit.connection.web3.currentProvider, // CeloProvider
+      network_id: 44787                              // Alfajores network id
+    },
+     // "rinkeby-infura": {
+     //    provider: () => new HDWalletProvider(process.env.TEST_MNEMONIC, "https://rinkeby.infura.io/"+process.env.INFURA_KEY),
+     //    network_id: 4,       // Rinkeby's network ID
+     //    gas: 5500000,
+     //  },
+     // "kovan-infura": {
+     //    provider: () => new HDWalletProvider(
+     //        process.env.TEST_MNEMONIC,
+     //        `https://kovan.infura.io/v3/${process.env.INFURA_KEY}`,
+     //        1
+     //    ),             // my seeded account on Metamask with Kovan ETH
+     //    network_id: 42,       // Kovan's network ID
+     //    gas: 5500000,
+     //    confirmations: 2,   // # of confs to wait between deployments. (default: 0)
+     //    timeoutBlocks: 200, // # of blocks before a deployment times out  (minimum/default: 50)
+     //    skipDryRun: true    // Skip dry run before migrations? (default: false for public nets )
+     //  },
        // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
