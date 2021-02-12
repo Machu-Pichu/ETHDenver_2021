@@ -51,8 +51,10 @@ Pre-requesites: Node.js & Truffle & React.js (for example by installing `npm ins
 
 4. cd  to `ETHDenver_2021/Pepito/client/src`and run
 
-```node createAccount.js```
-```/* this creates a new celo test account and displays the account on the console. Copy the account. */```
+```javascript
+node createAccount.js
+/* this creates a new celo test account and displays the account on the console. Copy the account. */
+```
 
 5. Go to [Alfajores test faucet](https://celo.org/developers/faucet) and fund the account
 
