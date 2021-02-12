@@ -9,16 +9,16 @@ const kit = ContractKit.newKitFromWeb3(web3)
 const getAccount = require('../client/src/getAccount').getAccount
 
 async function awaitWrapper(){
-    let account = await getAccount()
-    console.log(`Account address: ${account.address}`)
-    kit.addAccount(account.privateKey)
+  let account = await getAccount()
+  console.log(`Account address: ${account.address}`)
+  kit.addAccount(account.privateKey)
 }
 
 awaitWrapper()
 
 module.exports = function (deployer, network, account) {
-    const userAddress = account[0];              // my Metamask account with Kovan ETH
-    deployer.deploy(PepitoDisguise, userAddress); /* pepitoDisguise constructor expects ownerAddress
-        but since all disguises are dynamically deployed by Pepito, this deployment here is rather academic */
+  const userAddress = account[0];              // my Metamask account with Kovan ETH
+  deployer.deploy(PepitoDisguise, userAddress); /* pepitoDisguise constructor expects ownerAddress
+  but since all disguises are dynamically deployed by Pepito, this deployment here is rather academic */
   deployer.deploy(Pepito);
-  };
+};
