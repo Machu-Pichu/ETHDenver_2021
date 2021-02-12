@@ -23,6 +23,11 @@ In the following we'll specify and code a dApp to help you in this mission gener
 
 ![Backend](https://github.com/kvutien/Machu-Picchu/blob/main/Pepito/Final%20Project%20Design.png)
 
+CELO interests _Machu Picchu_  because
+1. we share the same social impact objective
+2. CELO is compatible with Ethereum for a large part, which leaves the future open
+3. the CELO Mobile-first approach can somehow be used by _Machu Picchu_, although _Machu Picchu_ goes one step further and has a technical scheme to use basic feature phones
+
 **As part of future design**, to allow a simple SMS-based signature by the person-in-need while preserving security, we are considering the use of a multisignature pattern, shared between the persons-in-need and the chief of village (the "Factory"). The person-in-need will sign with an OTP and a simple mobile phone. The chief of village will have a tablet or smartphone and will sign with the wallet private key.
 
 ## React Frontend design
@@ -35,88 +40,6 @@ We can also derive Pepito into a true humanitarian organisation management syste
 
 ![Frontend](https://github.com/kvutien/Machu-Picchu/blob/main/Pepito/Final%20Project%20React.png)
 
-# Directory structure
-```
-.
-├── 20201029\ Machu\ Picchu\ Tech\ Stack.png
-├── 20201128\ Avatars.jpeg
-├── LICENSE
-├── Pepito (the actual Bootcamp Final Project)
-│   ├── design_pattern_decisions.md
-│   ├── Final\ Project\ Design.png
-│   ├── Final\ Project\ Design.pptx
-│   ├── Final\ Project\ React.png
-│   ├── README.md
-│   ├── build
-│   ├── client
-│   │   ├── node_modules
-...
-│   │   ├── package-lock.json
-│   │   ├── package.json
-│   │   ├── public                  (React app HTML template and assets)
-...
-│   │   └── src                     (React frontend app)
-│   │       ├── App.css
-│   │       ├── App.js
-│   │       ├── App.test.js
-│   │       ├── OptionTable-v7.js   (not used but kept for the future)
-│   │       ├── OptionTable.js
-│   │       ├── contracts_abi       (compiled Solidity contracts)
-...
-│   │       ├── Disguise.js
-│   │       ├── DisguiseControls.js (block of components controlling the Disguise)
-│   │       ├── DisguiseRetrieve.js (component to retrieve the Disguise)
-│   │       ├── DisguiseStore.js    (component to store on-chain the Disguise)
-│   │       ├── DrawAvataar.js      (component to display the avataar)
-│   │       ├── getWeb3.js
-│   │       ├── index.css
-│   │       ├── index.js
-│   │       ├── logo.svg
-│   │       ├── MakePepito.svg      (component to connect Web3 & create a Disguise contract by Pepito contract)
-...
-│   │       ├── reportWebVitals.js
-│   │       └── setupTests.js
-│   ├── contracts
-│   │   ├── CodeTemplate.sol         (unused placeholder)
-│   │   ├── DraftCommunity.sol       (unused placeholder)
-│   │   ├── DraftHelperInstitution.sol (unused placeholder)
-│   │   ├── Migrations.sol
-│   │   ├── Pepito.sol
-│   │   └── PepitoDisguise.sol
-│   ├── migrations
-│   │   ├── 1_initial_migration.js
-│   │   └── 2_deploy_contracts.js
-│   ├── test
-│   │   ├── PepitoDisguiseTest.js
-│   │   └── PepitoTest.js
-│   └── truffle-config.js
-└── README.md
-```
-
-# Demo setup
-
-### MacOS
-
-* Install [Ganache](https://github.com/trufflesuite/ganache/releases/download/v1.2.1/Ganache-1.2.1-mac.zip) and [Brew](https://brew.sh/)
-* Install node.js via brew `brew install node`
-* Navigate to the folder where you want to clone the Machu-Picchu project
-* Clone the project via `git clone https://github.com/kvutien/Machu-Picchu.git` 
-* The cloned folder is `ETHDenver_2021`
-* Install the required packages: todo this, 
-  * navigate to folder `ETHDenver_2021/Pepito`, and run `npm install`
-  * navigate to folder `ETHDenver_2021/Pepito/client`, and run `npm install`
-* (as of Jan 2021) 
-  * in folder `ETHDenver_2021/Pepito`, run `truffle develop`: it will generate its own ganache-like network
-  * in `truffle develop` type `migrate` (or `migrate --reset` to force a new deployment)
-  * connect Metamask to the local network of `truffle develop` (should be http://127.0.0.1:9545) and import the first `truffle develop` account into Metamask
-  * _note_: if Metamaks displays only one confirmation dialog when you store a disguise, you may need to reset your account. See here [https://metamask.zendesk.com/hc/en-us/articles/360015488891-Resetting-an-Account](reset metamask account)
-  * in folder `ETHDenver_2021/Pepito/client`, run the app `npm run start`
-  * Your browser will open automatically [http://localhost:3000](http://localhost:3000) to view the app.
-* (*TODO: target setup process, to be detailed and tested*)
-  * configure `truffle-config.js` with `module.exports` containing your Infura credentials and your testnet
-  * run `truffle migrate --network` (your testnet)
-  * connect Metamask to this testnet where your account has some ETH
-  * run the app `heroku URL` or `IPFS`
 
 ## Credits
 Big thanks to the following resources:
