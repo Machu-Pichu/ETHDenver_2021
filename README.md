@@ -37,3 +37,25 @@ Because of the technical background of [Vu Tien Khang](https://www.linkedin.com/
 * Make each PepitoDisguise store its data on Textile or OrbitDB
 * Implement the frontend dialogue to change the features of a PepitoDisguise and store it back
 * Use the Celo Valora mobile wallet
+
+## Instructions
+
+Pre-requesites: Truffle & npm
+
+1. Make a repo and clone https://github.com/rajanpaulsarella/ETHDenver_2021 
+	git clone https://github.com/rajanpaulsarella/ETHDenver_2021
+2. cd to ETHDenver_2021/Pepito
+	npm install
+3. cd to ETHDenver_2021/Pepito/client
+	npm install
+4. cd  ETHDenver_2021/Pepito/client/src
+	node createAccount.js
+	/* this creates a new celo test account and displays the account on the console. Copy the account.
+5. Go to Alfajores test faucet and fund the account
+	https://celo.org/developers/faucet
+6. Migrate the project to Alfajores Test network
+	truffle migrate —network alfajores
+7. cd to ETHDenver_2021/Pepito/client
+	npm run start
+
+Voila!
