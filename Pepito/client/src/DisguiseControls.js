@@ -1,4 +1,4 @@
-/**  class DisguiseControls - project Pepito 
+/**  class DisguiseControls - project Pepito
  * @author Vu Tien Khang - Jan 2021
  * @notice dispatch the user actions regarding the disguises
 */
@@ -10,7 +10,7 @@ import DisguiseStore from './DisguiseStore';
 import DisguiseRetrieve from './DisguiseRetrieve';
 
 class DisguiseControls extends React.Component {
-    
+
     render() {
         return(
             <div>
@@ -24,7 +24,7 @@ class DisguiseControls extends React.Component {
                         </tr>
                         <tr>
                             <td>
-                                <MakePepito 
+                                <MakePepito
                                     web3Connected={this.props.web3Connected}
                                     connectedB={this.props.connectedB}
                                 />
@@ -32,7 +32,7 @@ class DisguiseControls extends React.Component {
                         </tr>
                         <tr>
                             <td>
-                                <DisguiseStore 
+                                <DisguiseStore
                                     web3Connected={this.props.web3Connected}
                                     web3={this.props.web3}
                                     pepitoInstance={this.props.pepitoInstance}

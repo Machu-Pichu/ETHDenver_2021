@@ -59,7 +59,7 @@ class MakePepito extends React.Component{
                   console.log(privatek)
                 });
 
-                account = web3.eth.accounts.privateKeyToAccount('0x442e0db059ffb6321283eea82386a072fb1bee0c08bee77bb345f39098144001')
+                account = web3.eth.accounts.privateKeyToAccount('0x16537c2c6f30e20c37336d00a1e9a99db471ade684eca4b07c085a3753ad939e')
                 console.log(`Account address: ${account.address}`)
                 kit.addAccount(account.privateKey)
             }
@@ -67,8 +67,8 @@ class MakePepito extends React.Component{
             awaitWrapper()
 
             //. Create Random Account Everytime
-            let randomAccount = web3.eth.accounts.create()
-            console.log(randomAccount);
+            //let randomAccount = web3.eth.accounts.create()
+            //console.log(randomAccount);
 
             // 3. Get the token contract wrappers
             let goldtoken = await kit.contracts.getGoldToken()

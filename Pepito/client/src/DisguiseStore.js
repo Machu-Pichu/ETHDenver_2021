@@ -1,4 +1,4 @@
-/**  class DisguiseStore - project Pepito 
+/**  class DisguiseStore - project Pepito
  * @author Vu Tien Khang - Jan 2021
  * @notice send transaction to deploy a disguiseContract and
  * @notice set the disguise state variable of this contract
@@ -7,6 +7,11 @@
 import React from 'react';
 import './App.css';
 import PepitoDisguise from "./contracts_abi/PepitoDisguise.json";   // to call web3 API
+
+const Web3 = require('web3')
+const ContractKit = require('@celo/contractkit')
+const web3 = new Web3('https://alfajores-forno.celo-testnet.org')
+const kit = ContractKit.newKitFromWeb3(web3)
 
 class DisguiseStore extends React.Component{
     constructor() {
@@ -17,17 +22,20 @@ class DisguiseStore extends React.Component{
     storeDisguise = async () => {
         const web3Connected = this.props.web3Connected;
         //console.log("--> 2.storeDisguise, web3Connected", web3Connected);
-      
+
         if(web3Connected){      // TODO: add a try-catch here
             /** @dev    get the Factory contract */
             const pepitoInstance = this.props.pepitoInstance;
-            //console.log("      2.storeDisguise.Pepito instance", pepitoInstance);            
+            //console.log("      2.storeDisguise.Pepito instance", pepitoInstance);
 
             /** @dev    tell the Factory contract to deploy a PepitoDisguise contract */
             const disguiseReceipt = await pepitoInstance.methods.createPepitoDisguise()
-                .send({from: this.props.ownerPepito});
-            //console.log('   2.storeDisguise-state.disguiseReceipt', disguiseReceipt)
-            
+                .send({from: this.props.ownerPepito, gasLimit: "13000000"});
+                // let tx = await kit.sendTransactionObject(disguiseReceipt, { from: this.props.ownerPepito, gasLimit: "13000000" }) // Send the transaction
+                // const receipt = await tx.waitReceipt()
+                // console.log(receipt)
+                //console.log('   2.storeDisguise-state.disguiseReceipt', disguiseReceipt)
+
             /** @dev    obtain latest array of all disguise addresses, using event of type PepitoDisguiseCreated
              * note that in the way Pepito contract increments the disguiseCount, its value is in the range [1,n]
              */
@@ -61,18 +69,24 @@ class DisguiseStore extends React.Component{
             );
             /** @dev tell the PepitoDisguise contract to store the array of indexes of its features */
             const storeDisguiseReceipt = await pepitoDisguise.methods.storeDisguise(disguise2store)
-                .send({from: this.props.ownerPepito });
+                .send({from: this.props.ownerPepito, gasLimit: "13000000" });
+
+                //const txObject = await instance.methods.setName(newName) // Encoding a transaction object call to the contract
+                //let tx2 = await kit.sendTransactionObject(storeDisguiseReceipt, { from: this.props.ownerPepito, gasLimit: "13000000" }) // Send the transaction
+                //const receipt2 = await tx2.waitReceipt()
+                //console.log(receipt2)
+
             //console.log("stored Disguise", storeDisguiseReceipt, disguise2store);
             this.setState({disguiseCount: disguiseCount});  // to update the render function
-      
-        } else alert("Please get first the blockchain interface & Pepito credentials");  
+
+        } else alert("Please get first the blockchain interface & Pepito credentials");
     }
 
     render() {
         return(
             <>
                 <span>Hint: better not store twice the same disguise :)</span>
-                <button className="btn btn-lg btn-secondary mb-5" 
+                <button className="btn btn-lg btn-secondary mb-5"
                     onClick={this.storeDisguise}>Store disguise on blockchain
                 </button>
                 <span>, currently... {this.state.disguiseCount}</span>
