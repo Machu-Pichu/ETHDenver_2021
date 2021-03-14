@@ -41,6 +41,7 @@ class DisguiseStore extends React.Component{
       */
       const lastEvent = await pepitoInstance.getPastEvents('PepitoDisguiseCreated', {});
       const disguiseCount = lastEvent[0].returnValues.disguiseCount;
+      this.setState({disguiseCount: disguiseCount});  // to update the count in the render function
       const disguiseAddresses = lastEvent[0].returnValues.disguiseAddresses;
       const disguiseAddress = lastEvent[0].returnValues.disguiseAddresses[disguiseCount-1];
       console.log('...     2.storeDisguise.lastEvent, count =', disguiseCount,
@@ -77,7 +78,6 @@ class DisguiseStore extends React.Component{
           //console.log(receipt2)
 
           //console.log("stored Disguise", storeDisguiseReceipt, disguise2store);
-          this.setState({disguiseCount: disguiseCount});  // to update the render function
 
         } else alert("Please get first the blockchain interface & Pepito credentials");
       }
