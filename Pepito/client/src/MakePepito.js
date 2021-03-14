@@ -81,8 +81,8 @@ class MakePepito extends React.Component{
       let cUSDBalance = await stabletoken.balanceOf(anAddress)
 
       // Print balances
-      console.log(`${anAddress}'s CELO balance: ${web3.utils.fromWei(celoBalance.toString())} ETH`)
-      console.log(`${anAddress}'s cUSD balance: ${web3.utils.fromWei(cUSDBalance.toString())} USD`)
+      console.log(`${anAddress}'s CELO balance: ${web3.utils.fromWei(celoBalance.toString())} CEL`)
+      console.log(`${anAddress}'s cUSD balance: ${web3.utils.fromWei(cUSDBalance.toString())} cUSD`)
 
       //this.props.celoWallet(anAddress, celoBalance, cUSDBalance);
 
