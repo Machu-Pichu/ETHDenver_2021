@@ -1,9 +1,9 @@
 # ETHDenver2021
 Machu Picchu entry for ETHDenver 2021
-## Contributing, from members of the Buidlathon team
+## Contributing
 * Fork the repository to your own github
 * Clone your repo to your local workstation and work from there; the main folder is `<your folder>/ETHDenver2021/Pepito`
-* Push to your repo
+* Push to your repo when done
 * When your version is ready, submit a pull request for _Machu Picchu_.
 ## Contact
 email: kvutien.yes@gmail.com
@@ -33,29 +33,30 @@ Because of the technical background of [Vu Tien Khang](https://www.linkedin.com/
 
 ## Objectives for the ETH Denver 2021 Buidlathon (proposed list to be discussed)
 * Port Pepito to Celo
-* Make Pepito store on IPFS its table of Disguise addresses
-* Make each PepitoDisguise store its data on Textile or OrbitDB
-* Implement the frontend dialogue to change the features of a PepitoDisguise and store it back
-* Use the Celo Valora mobile wallet
+* ~~Make Pepito store on IPFS its table of Disguise addresses~~
+* ~~Make each PepitoDisguise store its data on Textile or OrbitDB~~
+* ~~Implement the frontend dialogue to change the features of a PepitoDisguise and store it back~~
+* ~~Use the Celo Valora mobile wallet~~
 
 ## Instructions
 
 Pre-requesites: Truffle & npm
 
-1. Make a repo and clone https://github.com/rajanpaulsarella/ETHDenver_2021 
-	git clone https://github.com/rajanpaulsarella/ETHDenver_2021
-2. cd to ETHDenver_2021/Pepito
+1. Fork this repo to your repo and clone it, or clone directly:
+	`git clone https://github.com/Machu-Pichu/ETHDenver_2021`
+2. `cd` to `ETHDenver_2021/Pepito` and install the dependencies:
+	`npm install`
+3. `cd` to `ETHDenver_2021/Pepito/client`:
 	npm install
-3. cd to ETHDenver_2021/Pepito/client
-	npm install
-4. cd  ETHDenver_2021/Pepito/client/src
-	node createAccount.js
-	/* this creates a new celo test account and displays the account on the console. Copy the account.
-5. Go to Alfajores test faucet and fund the account
+4. `cd` to `ETHDenver_2021/Pepito/client/src` and create your own CELO testnet crypto account to run the demo:
+	`node createAccount.js`
+	/* this creates a new CELO test account and displays the account address on the console. Copy this account adddress */
+5. Go to Alfajores test faucet and fund the account by pasting this address, answer the CAPTCHA and click on "Get Started":
 	https://celo.org/developers/faucet
-6. Migrate the project to Alfajores Test network
-	truffle migrate —network alfajores
-7. cd to ETHDenver_2021/Pepito/client
-	npm run start
+6. Migrate the project to Alfajores test network:
+	`truffle migrate --network alfajores --reset` 
+7. `cd` to `ETHDenver_2021/Pepito/client` and launch the React frontend:
+	`npm run start`
+8. your browser will open a new tab at address http://localhost:3000 and display the frontend
 
 Voila!
