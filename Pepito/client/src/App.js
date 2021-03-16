@@ -16,7 +16,8 @@ class App extends Component {
             disguise:{},        // initialise disguise so that DrawAvataar has an object in first render
             web3: {},
             pepitoInstance: {},
-            disguiseAddresses: []
+            disguiseAddresses: [],
+            retrieved: false
         };
     }
 
@@ -25,7 +26,8 @@ class App extends Component {
         this.setState({
             randomBigNumber: randomBigNumber,
             idxDisguise: idxDisguise,   // disguise options object in key-value format
-            disguise: disguise          // disguise features object in key-value format
+            disguise: disguise,         // disguise features object in key-value format
+            retrieved: false
         }, () => {
             console.log('---> state after App.setDisguise()/Disguise', Object.keys(this.state), Object.values(this.state));
         });
@@ -71,8 +73,9 @@ class App extends Component {
     retrievedDisguise = async (disguiseAddress, idxDisguise, disguise) => {
         this.setState({
             disguiseAddress: disguiseAddress,
-            idxDisguise: idxDisguise,           // retrieved object in key-value format features:index
-            disguise: disguise                  // retrieved object in key-value format features:options
+            idxDisguise: idxDisguise,   // disguise options object in key-value format:index
+            disguise: disguise,         // disguise features object in key-value format:options
+            retrieved: true
         }, () => {
             console.log('---> state after App.retrievedDisguise/DisguiseRetrieve', Object.keys(this.state), Object.values(this.state));
         });
@@ -98,6 +101,7 @@ class App extends Component {
                         disguiseAddresses={this.state.disguiseAddresses}    //addresses of all disguise contracts
                         idxDisguise={this.state.idxDisguise}        // disguise object in key-value format features:index
                         disguiseCount={this.state.disguiseCount}    // max number of disguises = n, max index being n-1
+                        retrieved ={this.state.retrieved}           // flag disguise as retrieved from blockchain
                         deployedDisguise={this.deployedDisguise}    // used to return disguise count & address
                         retrievedDisguise={this.retrievedDisguise}  // used to return the retrieved disguise
                     />

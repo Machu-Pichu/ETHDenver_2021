@@ -38,17 +38,19 @@ class DisguiseControls extends React.Component {
                                     pepitoInstance={this.props.pepitoInstance}
                                     ownerPepito={this.props.ownerPepito}
                                     idxDisguise={this.props.idxDisguise}
-                                    deployedDisguise={this.props.deployedDisguise}
+                                    deployedDisguise={this.props.deployedDisguise}  // callback
                                 />
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <DisguiseRetrieve
-                                    disguiseAddresses={this.props.disguiseAddresses}    //to retrieve a disguise
+                                    disguiseAddresses={this.props.disguiseAddresses}    //retrieve disguise @ address
                                     web3={this.props.web3}
                                     disguiseCount={this.props.disguiseCount}
-                                    retrievedDisguise={this.props.retrievedDisguise} />
+                                    key={this.props.retrieved}
+                                    retrievedDisguise={this.props.retrievedDisguise}    // callback
+                                />
                             </td>
                         </tr>
                         <tr>
