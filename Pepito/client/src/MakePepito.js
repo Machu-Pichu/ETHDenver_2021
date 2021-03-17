@@ -96,17 +96,25 @@ class MakePepito extends React.Component{
           Pepito.abi,
           deployedNetwork && deployedNetwork.address,
         );
+        const web3Connected = true;
         const ownerPepito = await pepitoInstance.methods.owner().call();
-        var web3Connected = true;
-
+        const disguiseCount = await pepitoInstance.methods.disguiseCount().call();
+        let disguiseAddresses = [];
+        for (let i=0; i< disguiseCount; i++) {disguiseAddresses.push(0)};   // make array
+        disguiseAddresses.forEach(async (value, index, array) =>{           // fill array with addresses
+            disguiseAddresses[index] = await pepitoInstance.methods.disguiseAddresses(index).call();
+        });
         /*console.log("1.user account", accounts,
         ".\n 1.makePepito().Pepito contract", pepitoInstance,
         ".\n  1.Pepito contract address", deployedNetwork.address,
         ".\n   1.web3Connected", web3Connected,
-        ".\n    1.'owner' variable in Pepito", ownerPepito); */
+        ".\n    1.'owner' variable in Pepito", ownerPepito); 
+        ".\n     1.total of disguises", disguiseCount,
+        ".\n      1.all disguises addresses", disguiseAddresses); */
 
         /** @dev return to App.js web3, accounts, pepitoContract etc. */
-        this.props.connectedB(web3, accounts, pepitoInstance, deployedNetwork.address,  web3Connected, ownerPepito);
+        this.props.connectedB(web3, accounts, pepitoInstance, deployedNetwork.address,  web3Connected,
+             ownerPepito, disguiseCount, disguiseAddresses);
       } catch (error) {
         /// @dev catch any errors for any of the above operations.
         alert(

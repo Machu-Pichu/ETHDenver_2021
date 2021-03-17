@@ -43,7 +43,8 @@ class App extends Component {
     //   });
     // }
 
-    connectedB = async (web3, accounts, pepitoInstance, pepitoAddress, web3Connected, ownerPepito) => {
+    connectedB = async (web3, accounts, pepitoInstance, pepitoAddress, web3Connected,
+         ownerPepito, disguiseCount, disguiseAddresses) => {
     /** @notice record in state the values received from makePepito.js as arguments */
         this.setState({
             accounts: accounts,             // array of user accounts reachable by web3
@@ -51,7 +52,9 @@ class App extends Component {
             pepitoInstance: pepitoInstance, // web3 contract instance
             web3Connected: web3Connected,   // boolean
             web3: web3,
-            ownerPepito: ownerPepito        // address of account owner of Pepito
+            ownerPepito: ownerPepito,        // address of account owner of Pepito
+            disguiseCount: disguiseCount,
+            disguiseAddresses: disguiseAddresses
         }, () => {
             console.log('---> state after App.connectedB()/makePepito', Object.keys(this.state), Object.values(this.state));
         });
