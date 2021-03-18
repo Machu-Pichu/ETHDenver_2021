@@ -73,14 +73,15 @@ class App extends Component {
         });
     }
 
-    retrievedDisguise = async (disguiseAddress, idxDisguise, disguise) => {
+    retrievedDisguise = async (rank2retrieve, disguiseAddress, idxDisguise, disguise) => {
         this.setState({
+            rank2retrieve: rank2retrieve,
             disguiseAddress: disguiseAddress,
             idxDisguise: idxDisguise,   // disguise options object in key-value format:index
             disguise: disguise,         // disguise features object in key-value format:options
             retrieved: true
         }, () => {
-            console.log('---> state after App.retrievedDisguise/DisguiseRetrieve', Object.keys(this.state), Object.values(this.state));
+            console.log('---> state after App.retrievedDisguise/retrievedDisguise', Object.keys(this.state), Object.values(this.state));
         });
     }
 
@@ -101,6 +102,7 @@ class App extends Component {
                         web3={this.state.web3}
                         pepitoInstance={this.state.pepitoInstance}
                         ownerPepito={this.state.ownerPepito}
+                        rank2retrieve={this.state.rank2retrieve}
                         disguiseAddresses={this.state.disguiseAddresses}    //addresses of all disguise contracts
                         idxDisguise={this.state.idxDisguise}        // disguise object in key-value format features:index
                         disguiseCount={this.state.disguiseCount}    // max number of disguises = n, max index being n-1

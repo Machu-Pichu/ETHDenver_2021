@@ -90,6 +90,7 @@ class DisguiseStore extends React.Component{
     render() {
         return(
             <>
+            <span>currently before storage: {this.props.disguiseCount} disguises</span> <br></br>
             <span>Hint: better not store twice the same disguise :)</span>
             <button className="btn btn-lg btn-secondary mb-5"
             onClick={this.storeDisguise}>Store disguise on blockchain
@@ -101,7 +102,7 @@ class DisguiseStore extends React.Component{
                     loading={this.state.loading}
                 />
                 </div>:
-                <span>, currently... {this.state.disguiseCount}</span>
+                <span>, now... {this.state.disguiseCount}</span>
             }
             </>
         )

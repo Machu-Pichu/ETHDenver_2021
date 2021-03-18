@@ -26,7 +26,7 @@ class DisguiseControls extends React.Component {
                             <td>
                                 <MakePepito
                                     web3Connected={this.props.web3Connected}
-                                    connectedB={this.props.connectedB}
+                                    connectedB={this.props.connectedB}  // callback
                                 />
                             </td>
                         </tr>
@@ -35,6 +35,7 @@ class DisguiseControls extends React.Component {
                                 <DisguiseStore
                                     web3Connected={this.props.web3Connected}
                                     web3={this.props.web3}
+                                    disguiseCount={this.props.disguiseCount}
                                     pepitoInstance={this.props.pepitoInstance}
                                     ownerPepito={this.props.ownerPepito}
                                     idxDisguise={this.props.idxDisguise}
@@ -49,6 +50,8 @@ class DisguiseControls extends React.Component {
                                     web3={this.props.web3}
                                     disguiseCount={this.props.disguiseCount}
                                     key={this.props.retrieved}
+                                    retrieved={this.props.retrieved}
+                                    rank2retrieve={this.props.rank2retrieve}
                                     retrievedDisguise={this.props.retrievedDisguise}    // callback
                                 />
                             </td>
