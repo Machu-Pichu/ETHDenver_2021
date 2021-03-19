@@ -42,18 +42,18 @@ Because of the technical background of [Vu Tien Khang](https://www.linkedin.com/
 
 Pre-requesites: [NodeJS](https://nodejs.dev/learn/how-to-install-nodejs) & [Truffle](https://www.trufflesuite.com/docs/truffle/getting-started/installation)
 
-1. Fork this repo to your repo and clone it, or clone directly:
+1. Fork this repo to your repo and clone it, or clone directly: run 
 	`git clone https://github.com/Machu-Pichu/ETHDenver_2021`
-2. `cd` to `ETHDenver_2021/Pepito` and install the dependencies:
+2. `cd` to `ETHDenver_2021/Pepito` and install the dependencies: run
 	`npm install`
-3. `cd` to `ETHDenver_2021/Pepito/src` and create your own CELO testnet crypto account to run the demo:
+3. `cd` to `ETHDenver_2021/Pepito/src` and create your own CELO testnet crypto account to pay the blockchain fees of the demo: run 
 	`node createAccount.js`
-4.	/* this creates a new CELO test account and displays the account address on the console. Copy this account adddress */
+4.	... this creates a new CELO test account and displays the account address on the console. Copy this account adddress
 5. Go to Alfajores test faucet and fund the account by pasting the address you just copied, answer the CAPTCHA and click on "Get Started":
 	https://celo.org/developers/faucet
-6. Migrate the project to Alfajores test network:
+6. Migrate the project to Alfajores test network: `cd` to the folder `ETHDenver_2021/Pepito` and run 
 	`truffle migrate --network alfajores --reset` 
-7. `cd` to `ETHDenver_2021/Pepito/client` and launch the React frontend:
+7. In the same folder, launch the React frontend: run
 	`npm run start`
 8. your browser will open a new tab at address http://localhost:3000 and display the frontend
 
