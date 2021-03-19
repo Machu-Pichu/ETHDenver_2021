@@ -22,7 +22,7 @@ The ultimate achievement is to make an inclusive DEX where the persons in need m
 ![Business Model](./20210206%20Machu%20Picchu%20Business%20Model.png)
 
 ## Vision of Technical Stack
-A vision of the complete Technical Stack that can be used for _Machu Picchu_ is, in January 2021 **and if we have 2-3 M$ immediately available** :-)
+A vision of the complete Technical Stack that can be used for _Machu Picchu_ is, in April 2021 **and if we have 2-3 M$ immediately available** :-)
 ![Technical Stack](./20210206%20Machu%20Picchu%20Tech%20Stack.png)
 
 ## Pepito
@@ -40,18 +40,16 @@ Because of the technical background of [Vu Tien Khang](https://www.linkedin.com/
 
 ## Instructions
 
-Pre-requesites: Truffle & npm
+Pre-requesites: [NodeJS](https://nodejs.dev/learn/how-to-install-nodejs) & [Truffle](https://www.trufflesuite.com/docs/truffle/getting-started/installation)
 
 1. Fork this repo to your repo and clone it, or clone directly:
 	`git clone https://github.com/Machu-Pichu/ETHDenver_2021`
 2. `cd` to `ETHDenver_2021/Pepito` and install the dependencies:
 	`npm install`
-3. `cd` to `ETHDenver_2021/Pepito/client`:
-	npm install
-4. `cd` to `ETHDenver_2021/Pepito/client/src` and create your own CELO testnet crypto account to run the demo:
+3. `cd` to `ETHDenver_2021/Pepito/src` and create your own CELO testnet crypto account to run the demo:
 	`node createAccount.js`
-	/* this creates a new CELO test account and displays the account address on the console. Copy this account adddress */
-5. Go to Alfajores test faucet and fund the account by pasting this address, answer the CAPTCHA and click on "Get Started":
+4.	/* this creates a new CELO test account and displays the account address on the console. Copy this account adddress */
+5. Go to Alfajores test faucet and fund the account by pasting the address you just copied, answer the CAPTCHA and click on "Get Started":
 	https://celo.org/developers/faucet
 6. Migrate the project to Alfajores test network:
 	`truffle migrate --network alfajores --reset` 
