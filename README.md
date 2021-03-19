@@ -51,7 +51,7 @@ Pre-requesites: [NodeJS](https://nodejs.dev/learn/how-to-install-nodejs) & [Truf
 4.	... this creates a new CELO test account and displays the account address on the console. Copy this account adddress
 5. Go to Alfajores test faucet and fund the account by pasting the address you just copied, answer the CAPTCHA and click on "Get Started":
 	https://celo.org/developers/faucet
-6. Migrate the project to Alfajores test network: `cd` to the folder `ETHDenver_2021/Pepito` and run 
+6. Deploy the smart contracts (_migrate the project_) on Alfajores test network: `cd` to the folder `ETHDenver_2021/Pepito` and run 
 	`truffle migrate --network alfajores --reset` 
 7. In the same folder, launch the React frontend: run
 	`npm run start`
