@@ -1,10 +1,17 @@
 # ETHDenver2021
+
 Machu Picchu entry for ETHDenver 2021
 ## Contributing
 * Fork the repository to your own github
 * Clone your repo to your local workstation and work from there; the main folder is `<your folder>/ETHDenver2021/Pepito`
 * Push to your repo when done
 * When your version is ready, submit a pull request for _Machu Picchu_.
+
+1. Code: [Machu Picchu entry for ETHDenver 2021](https://github.com/Machu-Pichu/ETHDenver_2021/tree/main/Pepito)
+2. Video: [https://www.youtube.com/watch?v=XyRA4lQtvQs](https://www.youtube.com/watch?v=XyRA4lQtvQs)
+3. Pitch deck: [https://docs.google.com/presentation/d/1I_tdluxRyoShOSUdQ-A_UHwGV7LZJBtlCzPSaVvxYpE](https://docs.google.com/presentation/d/1I_tdluxRyoShOSUdQ-A_UHwGV7LZJBtlCzPSaVvxYpE)
+
+
 ## Contact
 email: kvutien.yes@gmail.com
 
@@ -26,17 +33,18 @@ A vision of the complete Technical Stack that can be used for _Machu Picchu_ is,
 ![Technical Stack](./20210206%20Machu%20Picchu%20Tech%20Stack.png)
 
 ## Pepito
-Pepito is the entry of _Machu Picchu_ to the ETH Denver 2021 Buidlathon. It is the demonstrator of how the personal data of the user in need can be stored. To make the blockchain more friendly to decision makers of helper organisations, instead of a boring user KYC data screen, we generate a disguise and store it.
+[Pepito is the entry of _Machu Picchu_ to the ETH Denver 2021 Buidlathon](https://github.com/Machu-Pichu/ETHDenver_2021/tree/main/Pepito). It is the demonstrator of how the personal data of the person-in-need can be stored. To make the blockchain more friendly to decision makers of helper organisations, instead of a boring user KYC data screen, we generate a disguise and store it. It constitute the "*Trust Engine*" at the bottom left of the Machu Picchu Technical Stack.
 
 ## Beyond Pepito…
 Because of the technical background of [Vu Tien Khang](https://www.linkedin.com/in/kvutien/) as Data Science, Earth Observation, on top of Space and Telecoms, our vision is to add collaborative data analysis tools, Geographical Information System mapping tools, and [Earth Observation tools](https://ibisa.users.earthengine.app/view/mcgyver3) to monitor crops and natural disasters. This will be started once Pepito has 10'000-50'000 persons to manage, provided funding is available.
 
-## Objectives for the ETH Denver 2021 Buidlathon (proposed list to be discussed)
+## Objectives for the ETH Denver 2021 Buidlathon
 * Port Pepito to Celo
 * ~~Make Pepito store on IPFS its table of Disguise addresses~~
 * ~~Make each PepitoDisguise store its data on Textile or OrbitDB~~
 * ~~Implement the frontend dialogue to change the features of a PepitoDisguise and store it back~~
 * ~~Use the Celo Valora mobile wallet~~
+* ~~Implement the frontend dialogue on mobile~~
 
 ## Instructions
 
@@ -56,5 +64,6 @@ Pre-requesites: [NodeJS](https://nodejs.dev/learn/how-to-install-nodejs) & [Truf
 7. In the same folder, launch the React frontend: run
 	`npm run start`
 8. your browser will open a new tab at address http://localhost:3000 and display the frontend
+
 
 Voila!
