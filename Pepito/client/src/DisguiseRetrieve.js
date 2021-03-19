@@ -9,8 +9,7 @@ import PepitoDisguise from "./contracts_abi/PepitoDisguise.json";   // to call w
 class DisguiseRetrieve extends React.Component{
     constructor(props) {
         super(props);
-        this.state = { disguiseCount: this.props.disguiseCount -0, // convert props.disguiseCount from a string to a number
-            retrieved: this.props.retrieved,
+        this.state = { retrieved: this.props.retrieved,
             rank2retrieve: this.props.rank2retrieve,
             idx2retrieve: this.props.rank2retrieve -1};
         // console.log('DisguiseRetrieve constructor: retrieved=', this.state.retrieved);
