@@ -49,7 +49,7 @@ class DisguiseControls extends React.Component {
                                     disguiseAddresses={this.props.disguiseAddresses}    //retrieve disguise @ address
                                     web3={this.props.web3}
                                     disguiseCount={this.props.disguiseCount}
-                                    key={this.props.retrieved}
+                                    key={this.props.keyToggle}
                                     retrieved={this.props.retrieved}
                                     rank2retrieve={this.props.rank2retrieve}
                                     retrievedDisguise={this.props.retrievedDisguise}    // callback

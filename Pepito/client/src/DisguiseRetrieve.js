@@ -101,7 +101,7 @@ class DisguiseRetrieve extends React.Component{
         if(rank2retrieve < 1) {alert("Disguise #" + rank2retrieve+ " is less than 1")} 
         else if(rank2retrieve > maxCount) {alert("Disguise #" + rank2retrieve+ " exceeds count " + maxCount)} 
         else {
-            this.retrieveDisguise()
+            this.retrieveDisguise()     //retrieve from blockchain
         };
       }
     myChangeHandler = async (event) => {

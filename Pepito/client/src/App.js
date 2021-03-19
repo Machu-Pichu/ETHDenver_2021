@@ -17,17 +17,23 @@ class App extends Component {
             web3: {},
             pepitoInstance: {},
             disguiseAddresses: [],
-            retrieved: false
+            retrieved: false,
+            keyToggle: false
         };
     }
 
     setDisguise = async (randomBigNumber, idxDisguise, disguise) => {
     /** @notice record in state the values received from Disguise.js as arguments */
+        let keyToggle = this.state.keyToggle;
+        // toggle if previous retrieved was true
+        if(this.state.retrieved){ keyToggle = !keyToggle };
+
         this.setState({
             randomBigNumber: randomBigNumber,
             idxDisguise: idxDisguise,   // disguise options object in key-value format
             disguise: disguise,         // disguise features object in key-value format
-            retrieved: false
+            retrieved: false,
+            keyToggle: keyToggle
         }, () => {
             console.log('---> state after App.setDisguise()/Disguise', Object.keys(this.state), Object.values(this.state));
         });
@@ -74,11 +80,16 @@ class App extends Component {
     }
 
     retrievedDisguise = async (rank2retrieve, disguiseAddress, idxDisguise, disguise) => {
+        let keyToggle = this.state.keyToggle;
+        // toggle if previous retrieved was false
+        if(!this.state.retrieved){ keyToggle = !keyToggle };
+
         this.setState({
             rank2retrieve: rank2retrieve,
             disguiseAddress: disguiseAddress,
             idxDisguise: idxDisguise,   // disguise options object in key-value format:index
             disguise: disguise,         // disguise features object in key-value format:options
+            keyToggle: keyToggle,
             retrieved: true
         }, () => {
             console.log('---> state after App.retrievedDisguise/retrievedDisguise', Object.keys(this.state), Object.values(this.state));
@@ -102,7 +113,8 @@ class App extends Component {
                         web3={this.state.web3}
                         pepitoInstance={this.state.pepitoInstance}
                         ownerPepito={this.state.ownerPepito}
-                        rank2retrieve={this.state.rank2retrieve}
+                        keyToggle={this.state.keyToggle}                       // rebuild DisguiseRetrieve if retrieved is toogled
+                        rank2retrieve={this.state.rank2retrieve}    // rank of disguise retrieved, if any
                         disguiseAddresses={this.state.disguiseAddresses}    //addresses of all disguise contracts
                         idxDisguise={this.state.idxDisguise}        // disguise object in key-value format features:index
                         disguiseCount={this.state.disguiseCount}    // max number of disguises = n, max index being n-1
