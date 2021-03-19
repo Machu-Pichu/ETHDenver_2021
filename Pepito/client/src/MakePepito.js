@@ -3,6 +3,7 @@
 * @notice connect to Web3 instance of Pepito, call App.connectB to store on App.state
 */
 import React from 'react';
+import { BounceLoader } from 'react-spinners';
 //import getWeb3 from "./getWeb3";                    // to call web3 API
 import Pepito from "./contracts_abi/Pepito.json";   // to call web3 API
 import './App.css';
@@ -23,6 +24,7 @@ class MakePepito extends React.Component{
     super();
     this.web3 = {};
     this.accounts = [];
+    this.state = {loading: false};
   }
 
   // This will fetch the private key from .secret file
@@ -63,7 +65,8 @@ class MakePepito extends React.Component{
         kit.addAccount(account.privateKey)
       }
 
-      awaitWrapper()
+      this.setState({loading: true});
+      awaitWrapper()        // obtain ETH/CEL account to pay for transactions
 
       //. Create Random Account Everytime
       //let randomAccount = web3.eth.accounts.create()
@@ -113,6 +116,7 @@ class MakePepito extends React.Component{
         ".\n      1.all disguises addresses", disguiseAddresses); */
 
         /** @dev return to App.js web3, accounts, pepitoContract etc. */
+        this.setState({loading: false});
         this.props.connectedB(web3, accounts, pepitoInstance, deployedNetwork.address,  web3Connected,
              ownerPepito, disguiseCount, disguiseAddresses);
       } catch (error) {
@@ -128,8 +132,16 @@ class MakePepito extends React.Component{
   render() {
     return(
       <>
-      <button className="btn btn-lg btn-secondary mb-5"
-      onClick={this.makePepito}>Get blockchain interface & Pepito instance</button>
+        { this.state.loading ?
+            <div className="spinner">
+                <BounceLoader
+                    color={'#6CEC7D'}
+                    loading={this.state.loading}
+                />
+            </div>:
+            <button className="btn btn-lg btn-secondary mb-5"
+            onClick={this.makePepito}>Get blockchain interface & Pepito instance</button>
+        }
       </>
     )
   }

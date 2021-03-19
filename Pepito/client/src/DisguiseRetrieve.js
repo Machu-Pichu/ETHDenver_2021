@@ -13,7 +13,7 @@ class DisguiseRetrieve extends React.Component{
             retrieved: this.props.retrieved,
             rank2retrieve: this.props.rank2retrieve,
             idx2retrieve: this.props.rank2retrieve -1};
-        console.log('DisguiseRetrieve constructor: retrieved=', this.state.retrieved);
+        // console.log('DisguiseRetrieve constructor: retrieved=', this.state.retrieved);
         this.options = {	/** @dev the disguise options will be factored out to be reused in OptionTable */
           topType: ['Eyepatch', 'Hat', 'Hijab', 'LongHairBigHair', 'LongHairBob', 'LongHairBun', 'LongHairCurly', 'LongHairCurvy', 'LongHairDreads', 'LongHairFrida', 'LongHairFro', 'LongHairFroBand', 'LongHairMiaWallace', 'LongHairNotTooLong', 'LongHairShavedSides', 'LongHairStraight', 'LongHairStraight2', 'LongHairStraightStrand', 'NoHair', 'ShortHairDreads01', 'ShortHairDreads02', 'ShortHairFrizzle', /*'ShortHairShaggy',*/ 'ShortHairShaggyMullet', 'ShortHairShortCurly', 'ShortHairShortFlat', 'ShortHairShortRound', 'ShortHairShortWaved', 'ShortHairSides', 'ShortHairTheCaesar', 'ShortHairTheCaesarSidePart', 'Turban', 'WinterHat1', 'WinterHat2', 'WinterHat3', 'WinterHat4'],
           hatColor: ['Black', 'Blue01', 'Blue02', 'Blue03', 'Gray01', 'Gray02', 'Heather', 'PastelBlue', 'PastelGreen', 'PastelOrange', 'PastelRed', 'PastelYellow', 'Pink', 'Red', 'White'],
@@ -110,13 +110,14 @@ class DisguiseRetrieve extends React.Component{
         const idx2retrieve = rank2retrieve - 1;
         this.setState({rank2retrieve: rank2retrieve,
               idx2retrieve: idx2retrieve}, ()=> {
-                console.log('-- DisguiseRetrieve, myChangeHandler(): rank2retrieve=', this.state.rank2retrieve,
-                ' , retrieved', this.state.retrieved);
+                // console.log('-- DisguiseRetrieve, myChangeHandler(): rank2retrieve=', this.state.rank2retrieve,
+                // ' , retrieved', this.state.retrieved);
                });
     }
     myClickHandler = async () => {
-        this.setState({ retrieved: true }, () => 
-        {console.log('-- DisguiseRetrieve, myClickHandler(): retrieved=', this.state.retrieved)});
+        this.setState({ retrieved: true } 
+        // , () => {console.log('-- DisguiseRetrieve, myClickHandler(): retrieved=', this.state.retrieved)}
+        );
     }
 
 

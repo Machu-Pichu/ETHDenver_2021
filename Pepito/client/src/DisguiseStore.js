@@ -48,7 +48,7 @@ class DisguiseStore extends React.Component{
             this.setState({disguiseCount: disguiseCount, loading: false});
             const disguiseAddresses = lastEvent[0].returnValues.disguiseAddresses;
             const disguiseAddress = lastEvent[0].returnValues.disguiseAddresses[disguiseCount-1];
-            console.log('...     2.storeDisguise.lastEvent, count =', disguiseCount,
+            console.log('...     2.storeDisguise.Solidity event, count =', disguiseCount,
             ', disguise addresses', disguiseAddresses);
 
             /** @dev    build the array of options of features of this disguise to store it
@@ -98,7 +98,7 @@ class DisguiseStore extends React.Component{
             { this.state.loading ?
                 <div className="spinner">
                 <BounceLoader
-                    color={'#6c757d'}
+                    color={'#6cEc7d'}
                     loading={this.state.loading}
                 />
                 </div>:
