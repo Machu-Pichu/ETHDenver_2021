@@ -3,6 +3,7 @@
 * @notice connect to Web3 instance of Pepito, call App.connectB to store on App.state
 */
 import React from 'react';
+import { BounceLoader } from 'react-spinners';
 //import getWeb3 from "./getWeb3";                    // to call web3 API
 import Pepito from "./contracts_abi/Pepito.json";   // to call web3 API
 import './App.css';
@@ -23,6 +24,7 @@ class MakePepito extends React.Component{
     super();
     this.web3 = {};
     this.accounts = [];
+    this.state = {loading: false};
   }
 
   // This will fetch the private key from .secret file
@@ -63,7 +65,8 @@ class MakePepito extends React.Component{
         kit.addAccount(account.privateKey)
       }
 
-      awaitWrapper()
+      this.setState({loading: true});
+      awaitWrapper()        // obtain ETH/CEL account to pay for transactions
 
       //. Create Random Account Everytime
       //let randomAccount = web3.eth.accounts.create()
@@ -81,8 +84,8 @@ class MakePepito extends React.Component{
       let cUSDBalance = await stabletoken.balanceOf(anAddress)
 
       // Print balances
-      console.log(`${anAddress} CELO balance: ${celoBalance.toString()}`)
-      console.log(`${anAddress} cUSD balance: ${cUSDBalance.toString()}`)
+      console.log(`${anAddress}'s CELO balance: ${web3.utils.fromWei(celoBalance.toString())} CEL`)
+      console.log(`${anAddress}'s cUSD balance: ${web3.utils.fromWei(cUSDBalance.toString())} cUSD`)
 
       //this.props.celoWallet(anAddress, celoBalance, cUSDBalance);
 
@@ -96,17 +99,26 @@ class MakePepito extends React.Component{
           Pepito.abi,
           deployedNetwork && deployedNetwork.address,
         );
+        const web3Connected = true;
         const ownerPepito = await pepitoInstance.methods.owner().call();
-        var web3Connected = true;
-
+        const disguiseCount = await pepitoInstance.methods.disguiseCount().call();
+        let disguiseAddresses = [];
+        for (let i=0; i< disguiseCount; i++) {disguiseAddresses.push(0)};   // make array
+        disguiseAddresses.forEach(async (value, index, array) =>{           // fill array with addresses
+            disguiseAddresses[index] = await pepitoInstance.methods.disguiseAddresses(index).call();
+        });
         /*console.log("1.user account", accounts,
         ".\n 1.makePepito().Pepito contract", pepitoInstance,
         ".\n  1.Pepito contract address", deployedNetwork.address,
         ".\n   1.web3Connected", web3Connected,
-        ".\n    1.'owner' variable in Pepito", ownerPepito); */
+        ".\n    1.'owner' variable in Pepito", ownerPepito); 
+        ".\n     1.total of disguises", disguiseCount,
+        ".\n      1.all disguises addresses", disguiseAddresses); */
 
         /** @dev return to App.js web3, accounts, pepitoContract etc. */
-        this.props.connectedB(web3, accounts, pepitoInstance, deployedNetwork.address,  web3Connected, ownerPepito);
+        this.setState({loading: false});
+        this.props.connectedB(web3, accounts, pepitoInstance, deployedNetwork.address,  web3Connected,
+             ownerPepito, disguiseCount, disguiseAddresses);
       } catch (error) {
         /// @dev catch any errors for any of the above operations.
         alert(
@@ -120,8 +132,16 @@ class MakePepito extends React.Component{
   render() {
     return(
       <>
-      <button className="btn btn-lg btn-secondary mb-5"
-      onClick={this.makePepito}>Get blockchain interface & Pepito instance</button>
+        { this.state.loading ?
+            <div className="spinner">
+                <BounceLoader
+                    color={'#6CEC7D'}
+                    loading={this.state.loading}
+                />
+            </div>:
+            <button className="btn btn-lg btn-secondary mb-5"
+            onClick={this.makePepito}>Get blockchain interface & Pepito instance</button>
+        }
       </>
     )
   }

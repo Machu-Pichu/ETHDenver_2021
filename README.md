@@ -1,7 +1,16 @@
 # ETHDenver2021
+
+Machu Picchu entry for ETHDenver 2021
+## Contributing
+* Fork the repository to your own github
+* Clone your repo to your local workstation and work from there; the main folder is `<your folder>/ETHDenver2021/Pepito`
+* Push to your repo when done
+* When your version is ready, submit a pull request for _Machu Picchu_.
+
 1. Code: [Machu Picchu entry for ETHDenver 2021](https://github.com/Machu-Pichu/ETHDenver_2021/tree/main/Pepito)
 2. Video: [https://www.youtube.com/watch?v=XyRA4lQtvQs](https://www.youtube.com/watch?v=XyRA4lQtvQs)
 3. Pitch deck: [https://docs.google.com/presentation/d/1I_tdluxRyoShOSUdQ-A_UHwGV7LZJBtlCzPSaVvxYpE](https://docs.google.com/presentation/d/1I_tdluxRyoShOSUdQ-A_UHwGV7LZJBtlCzPSaVvxYpE)
+
 
 ## Contact
 email: kvutien.yes@gmail.com
@@ -31,7 +40,11 @@ Because of the technical background of [Vu Tien Khang](https://www.linkedin.com/
 
 ## Objectives for the ETH Denver 2021 Buidlathon
 * Port Pepito to Celo
-* Implement the frontend dialogue on mobile
+* ~~Make Pepito store on IPFS its table of Disguise addresses~~
+* ~~Make each PepitoDisguise store its data on Textile or OrbitDB~~
+* ~~Implement the frontend dialogue to change the features of a PepitoDisguise and store it back~~
+* ~~Use the Celo Valora mobile wallet~~
+* ~~Implement the frontend dialogue on mobile~~
 
 ## Instructions
 
@@ -75,5 +88,6 @@ Pre-requesites: Node.js & Truffle & React.js (for example by installing `npm ins
 ```
      npm run start
 ```
+
 
 Voila!

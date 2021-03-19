@@ -16,16 +16,24 @@ class App extends Component {
             disguise:{},        // initialise disguise so that DrawAvataar has an object in first render
             web3: {},
             pepitoInstance: {},
-            disguiseAddresses: []
+            disguiseAddresses: [],
+            retrieved: false,
+            keyToggle: false
         };
     }
 
     setDisguise = async (randomBigNumber, idxDisguise, disguise) => {
     /** @notice record in state the values received from Disguise.js as arguments */
+        let keyToggle = this.state.keyToggle;
+        // toggle if previous retrieved was true
+        if(this.state.retrieved){ keyToggle = !keyToggle };
+
         this.setState({
             randomBigNumber: randomBigNumber,
             idxDisguise: idxDisguise,   // disguise options object in key-value format
-            disguise: disguise          // disguise features object in key-value format
+            disguise: disguise,         // disguise features object in key-value format
+            retrieved: false,
+            keyToggle: keyToggle
         }, () => {
             console.log('---> state after App.setDisguise()/Disguise', Object.keys(this.state), Object.values(this.state));
         });
@@ -41,7 +49,8 @@ class App extends Component {
     //   });
     // }
 
-    connectedB = async (web3, accounts, pepitoInstance, pepitoAddress, web3Connected, ownerPepito) => {
+    connectedB = async (web3, accounts, pepitoInstance, pepitoAddress, web3Connected,
+         ownerPepito, disguiseCount, disguiseAddresses) => {
     /** @notice record in state the values received from makePepito.js as arguments */
         this.setState({
             accounts: accounts,             // array of user accounts reachable by web3
@@ -49,7 +58,9 @@ class App extends Component {
             pepitoInstance: pepitoInstance, // web3 contract instance
             web3Connected: web3Connected,   // boolean
             web3: web3,
-            ownerPepito: ownerPepito        // address of account owner of Pepito
+            ownerPepito: ownerPepito,        // address of account owner of Pepito
+            disguiseCount: disguiseCount,
+            disguiseAddresses: disguiseAddresses
         }, () => {
             console.log('---> state after App.connectedB()/makePepito', Object.keys(this.state), Object.values(this.state));
         });
@@ -68,13 +79,20 @@ class App extends Component {
         });
     }
 
-    retrievedDisguise = async (disguiseAddress, idxDisguise, disguise) => {
+    retrievedDisguise = async (rank2retrieve, disguiseAddress, idxDisguise, disguise) => {
+        let keyToggle = this.state.keyToggle;
+        // toggle if previous retrieved was false
+        if(!this.state.retrieved){ keyToggle = !keyToggle };
+
         this.setState({
+            rank2retrieve: rank2retrieve,
             disguiseAddress: disguiseAddress,
-            idxDisguise: idxDisguise,           // retrieved object in key-value format features:index
-            disguise: disguise                  // retrieved object in key-value format features:options
+            idxDisguise: idxDisguise,   // disguise options object in key-value format:index
+            disguise: disguise,         // disguise features object in key-value format:options
+            keyToggle: keyToggle,
+            retrieved: true
         }, () => {
-            console.log('---> state after App.retrievedDisguise/DisguiseRetrieve', Object.keys(this.state), Object.values(this.state));
+            console.log('---> state after App.retrievedDisguise/retrievedDisguise', Object.keys(this.state), Object.values(this.state));
         });
     }
 
@@ -95,9 +113,12 @@ class App extends Component {
                         web3={this.state.web3}
                         pepitoInstance={this.state.pepitoInstance}
                         ownerPepito={this.state.ownerPepito}
+                        keyToggle={this.state.keyToggle}                       // rebuild DisguiseRetrieve if retrieved is toogled
+                        rank2retrieve={this.state.rank2retrieve}    // rank of disguise retrieved, if any
                         disguiseAddresses={this.state.disguiseAddresses}    //addresses of all disguise contracts
                         idxDisguise={this.state.idxDisguise}        // disguise object in key-value format features:index
                         disguiseCount={this.state.disguiseCount}    // max number of disguises = n, max index being n-1
+                        retrieved ={this.state.retrieved}           // flag disguise as retrieved from blockchain
                         deployedDisguise={this.deployedDisguise}    // used to return disguise count & address
                         retrievedDisguise={this.retrievedDisguise}  // used to return the retrieved disguise
                     />

@@ -67,10 +67,10 @@ module.exports = {
       port: 7545,            // Standard Ganache CLI Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
      },
-     alfajores: {
+    alfajores: {
       provider: kit.connection.web3.currentProvider, // CeloProvider
       network_id: 44787                              // Alfajores network id
-    },
+    }
      // "rinkeby-infura": {
      //    provider: () => new HDWalletProvider(process.env.TEST_MNEMONIC, "https://rinkeby.infura.io/"+process.env.INFURA_KEY),
      //    network_id: 4,       // Rinkeby's network ID
