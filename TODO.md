@@ -33,7 +33,7 @@ Teams should add details like:
 3.    Challenges encountered along the way
 4.    Technologies used (important for bounties!!!)
 5.    Links to code, visuals, or presentations **<-- our github**
-6.    Video demo (all teams must submit a 3-5 minute video demo of their project) **<-- oure video**
+6.    Video demo (all teams must submit a 3-5 minute video demo of their project) **<-- our video**
 7.    Pictures (if applicable)
 8.    Applicable tracks - All teams a part of the Open track, but they can also select to enter the Impact, Colorado Jam, or Sponsor bounties
 
