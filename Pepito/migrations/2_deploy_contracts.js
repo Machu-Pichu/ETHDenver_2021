@@ -3,10 +3,12 @@ const Pepito = artifacts.require("Pepito");
 
 const path = require("path");    // used to direct creation of ABI in another directory than default
 const Web3 = require('web3')
-const ContractKit = require('../client/node_modules/@celo/contractkit')
+//const ContractKit = require('../client/node_modules/@celo/contractkit')
+const ContractKit = require('../node_modules/@celo/contractkit')
 const web3 = new Web3('https://alfajores-forno.celo-testnet.org')
 const kit = ContractKit.newKitFromWeb3(web3)
-const getAccount = require('../client/src/getAccount').getAccount
+//const getAccount = require('../client/src/getAccount').getAccount
+const getAccount = require('../src/getAccount').getAccount
 
 async function awaitWrapper(){
   let account = await getAccount()

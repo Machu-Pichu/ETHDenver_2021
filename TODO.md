@@ -1,5 +1,5 @@
 # ETH Denver 2021
-Update of 2021-02-05
+Update of 2021-02-05, no more relevant after the hackathon
 * confirmed members
   * Vu Tien Khang ("Vutien"): _Space System Architect, 45 years of experience (yes :-), Luxembourg React, Solidity, Web3, Nodejs + Earth Observation & Telecoms_
   * Duke Silver ("Rajan"): _I am a Sr. Java Developer working in Chicago currently. I can code all Java Stack and all the popular DB's. I started learning Ethereum stack 6 months back and got certified. I can work with Solidity, IPFS, Truffle, Infura and all that core ethereum stuff._

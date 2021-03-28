@@ -2,6 +2,7 @@
   "name": "pepito",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@celo/contractkit": "^1.0.1",
     "@openzeppelin/contracts": "^3.3.0",
