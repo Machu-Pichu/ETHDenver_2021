@@ -22,7 +22,7 @@
 
 const path = require("path");    // used to direct creation of ABI in another directory than default
 const Web3 = require('web3')
-const ContractKit = require('@celo/contractkit')
+const ContractKit = require('./client/node_modules/@celo/contractkit')
 const web3 = new Web3('https://alfajores-forno.celo-testnet.org')
 const kit = ContractKit.newKitFromWeb3(web3)
 const getAccount = require('./client/src/getAccount').getAccount
@@ -67,10 +67,10 @@ module.exports = {
       port: 7545,            // Standard Ganache CLI Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
      },
-    alfajores: {
+     alfajores: {
       provider: kit.connection.web3.currentProvider, // CeloProvider
       network_id: 44787                              // Alfajores network id
-    }
+    },
      // "rinkeby-infura": {
      //    provider: () => new HDWalletProvider(process.env.TEST_MNEMONIC, "https://rinkeby.infura.io/"+process.env.INFURA_KEY),
      //    network_id: 4,       // Rinkeby's network ID

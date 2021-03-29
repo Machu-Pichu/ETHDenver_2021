@@ -26,7 +26,7 @@ class DisguiseControls extends React.Component {
                             <td>
                                 <MakePepito
                                     web3Connected={this.props.web3Connected}
-                                    connectedB={this.props.connectedB}  // callback
+                                    connectedB={this.props.connectedB}
                                 />
                             </td>
                         </tr>
@@ -35,25 +35,20 @@ class DisguiseControls extends React.Component {
                                 <DisguiseStore
                                     web3Connected={this.props.web3Connected}
                                     web3={this.props.web3}
-                                    disguiseCount={this.props.disguiseCount}
                                     pepitoInstance={this.props.pepitoInstance}
                                     ownerPepito={this.props.ownerPepito}
                                     idxDisguise={this.props.idxDisguise}
-                                    deployedDisguise={this.props.deployedDisguise}  // callback
+                                    deployedDisguise={this.props.deployedDisguise}
                                 />
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <DisguiseRetrieve
-                                    disguiseAddresses={this.props.disguiseAddresses}    //retrieve disguise @ address
+                                    disguiseAddresses={this.props.disguiseAddresses}    //to retrieve a disguise
                                     web3={this.props.web3}
                                     disguiseCount={this.props.disguiseCount}
-                                    key={this.props.keyToggle}
-                                    retrieved={this.props.retrieved}
-                                    rank2retrieve={this.props.rank2retrieve}
-                                    retrievedDisguise={this.props.retrievedDisguise}    // callback
-                                />
+                                    retrievedDisguise={this.props.retrievedDisguise} />
                             </td>
                         </tr>
                         <tr>

@@ -26,14 +26,13 @@ _Impact Bounties - If your project addresses a specific [UN Sustainability Goal 
 Feel free to comment
 
 ## Deliverables
-Our project description is here: https://devfolio.co/submissions/machu-picchu-85a5.
 Teams should add details like:
 1.    Project name
 2.    Problem being solved
 3.    Challenges encountered along the way
 4.    Technologies used (important for bounties!!!)
 5.    Links to code, visuals, or presentations **<-- our github**
-6.    Video demo (all teams must submit a 3-5 minute video demo of their project) **<-- our video**
+6.    Video demo (all teams must submit a 3-5 minute video demo of their project) **<-- start the video latest Thursday 11**
 7.    Pictures (if applicable)
 8.    Applicable tracks - All teams a part of the Open track, but they can also select to enter the Impact, Colorado Jam, or Sponsor bounties
 
@@ -43,12 +42,12 @@ This is a rough roadmap that we can use as basis to adapt and fill the TODO.
 
 The plan would be to 
 1. **port Pepito to Celo**: Rajan is fine with that, He's Celo, IPFS, Solidity, React, java
-2. ~~**have Pepito store on IPFS** its table of Disguise addresses. Any Solidity + IPFS person would do~~
-3. ~~have **each PepitoDisguise store on Textile or OrbitDB** its data. Here we need someone Solidity + React + IPFS/Textile/orbitDB~~
-4. ~~... and/or **use Ceramic** to describe the data model **and IDX** for identity, but this might collide with Celo~~  
-5. ~~make the **Pepito frontend more sexy** and add a dialog to update the features of a PepitoDisguise and store again. Here someone React+IPFS/Textile/OrbitDB~~
-6. ~~Add a **mobile frontend using the Valora mobile** API of Celo (cherry over the cake, IMHO in 1 week we'll not have time~~
-7. ~~another cherry on the cake, **use TheGraph to query the database**, but we'll certainly not have time, unless you have the code ready somewhere~~
+2. **have Pepito store on IPFS** its table of Disguise addresses. Any Solidity + IPFS person would do
+3. have **each PepitoDisguise store on Textile or OrbitDB** its data. Here we need someone Solidity + React + IPFS/Textile/orbitDB
+4. ... and/or **use Ceramic** to describe the data model **and IDX** for identity, but this might collide with Celo  
+5. make the **Pepito frontend more sexy** and add a dialog to update the features of a PepitoDisguise and store again. Here someone React+IPFS/Textile/OrbitDB
+6. Add a **mobile frontend using the Valora mobile** API of Celo (cherry over the cake, IMHO in 1 week we'll not have time
+7. another cherry on the cake, **use TheGraph to query the database**, but we'll certainly not have time, unless you have the code ready somewhere
    
 ## List of bounties
 [https://www.ethdenver.com/bounties](https://www.ethdenver.com/bounties)

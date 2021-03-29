@@ -9,10 +9,8 @@ import PepitoDisguise from "./contracts_abi/PepitoDisguise.json";   // to call w
 class DisguiseRetrieve extends React.Component{
     constructor(props) {
         super(props);
-        this.state = { retrieved: this.props.retrieved,
-            rank2retrieve: this.props.rank2retrieve,
-            idx2retrieve: this.props.rank2retrieve -1};
-        // console.log('DisguiseRetrieve constructor: retrieved=', this.state.retrieved);
+        this.state = { disguiseCount: this.props.disguiseCount -0 }; // state.disguiseCount is a number, props.disguiseCount is a string
+        //console.log('DisguiseRetrieve constructor: disguiseCount=', this.state.disguiseCount);
         this.options = {	/** @dev the disguise options will be factored out to be reused in OptionTable */
           topType: ['Eyepatch', 'Hat', 'Hijab', 'LongHairBigHair', 'LongHairBob', 'LongHairBun', 'LongHairCurly', 'LongHairCurvy', 'LongHairDreads', 'LongHairFrida', 'LongHairFro', 'LongHairFroBand', 'LongHairMiaWallace', 'LongHairNotTooLong', 'LongHairShavedSides', 'LongHairStraight', 'LongHairStraight2', 'LongHairStraightStrand', 'NoHair', 'ShortHairDreads01', 'ShortHairDreads02', 'ShortHairFrizzle', /*'ShortHairShaggy',*/ 'ShortHairShaggyMullet', 'ShortHairShortCurly', 'ShortHairShortFlat', 'ShortHairShortRound', 'ShortHairShortWaved', 'ShortHairSides', 'ShortHairTheCaesar', 'ShortHairTheCaesarSidePart', 'Turban', 'WinterHat1', 'WinterHat2', 'WinterHat3', 'WinterHat4'],
           hatColor: ['Black', 'Blue01', 'Blue02', 'Blue03', 'Gray01', 'Gray02', 'Heather', 'PastelBlue', 'PastelGreen', 'PastelOrange', 'PastelRed', 'PastelYellow', 'Pink', 'Red', 'White'],
@@ -28,6 +26,7 @@ class DisguiseRetrieve extends React.Component{
           skinColor: ['Tanned', 'Yellow', 'Pale', 'Light', 'Brown', 'DarkBrown', 'Black']
         }
     }
+
 
 
     retrieveDisguise = async () => {
@@ -89,47 +88,35 @@ class DisguiseRetrieve extends React.Component{
             skinColor: this.options.skinColor[idxSkinColor],
         };
 
-        this.props.retrievedDisguise(this.state.rank2retrieve, disguiseAddress, idxDisguise, disguise);
+        this.props.retrievedDisguise(disguiseAddress, idxDisguise, disguise);
     }
 
     mySubmitHandler = async (event) => {
-        event.preventDefault();     // let React use mySubmitHandler instead of default
-        // retrieve only existing disguises
-        const maxCount = this.props.disguiseCount;
-        console.log('-- DisguiseRetrieve, mySubmitHandler(): idx2retrieve=', this.state.idx2retrieve, ' , maxCount', maxCount);
-        const rank2retrieve = this.state.rank2retrieve;
+        event.preventDefault();
+        const rank2retrieve = this.state.rank2retrieve - 0; // same trick as above to transform a string to a number for arithmetic compare
+        const idx2retrieve = rank2retrieve - 1;
+        this.setState({ disguiseCount: this.props.disguiseCount -0 });  // refresh the component's state in case new disguise was stored
+        const maxCount = this.state.disguiseCount;
+        // console.log('-- DisguiseRetrieve, mySubmitHandler(): idx2retrieve=', idx2retrieve, ' , maxCount', maxCount);
         if(rank2retrieve < 1) {alert("Disguise #" + rank2retrieve+ " is less than 1")} 
         else if(rank2retrieve > maxCount) {alert("Disguise #" + rank2retrieve+ " exceeds count " + maxCount)} 
         else {
-            this.retrieveDisguise()     //retrieve from blockchain
+            await this.setState({idx2retrieve: idx2retrieve});
+            this.retrieveDisguise()
         };
       }
     myChangeHandler = async (event) => {
-        const rank2retrieve = event.target.value - 0;     //string -> number for arithmetic compare
-        const idx2retrieve = rank2retrieve - 1;
-        this.setState({rank2retrieve: rank2retrieve,
-              idx2retrieve: idx2retrieve}, ()=> {
-                // console.log('-- DisguiseRetrieve, myChangeHandler(): rank2retrieve=', this.state.rank2retrieve,
-                // ' , retrieved', this.state.retrieved);
-               });
+        this.setState({rank2retrieve: event.target.value});
     }
-    myClickHandler = async () => {
-        this.setState({ retrieved: true } 
-        // , () => {console.log('-- DisguiseRetrieve, myClickHandler(): retrieved=', this.state.retrieved)}
-        );
-    }
-
 
     render() {
         return(
             <>
                 <form onSubmit={this.mySubmitHandler}>
-                <span>Retrieve Disguise rank {this.state.rank2retrieve} index {this.state.idx2retrieve}</span><br></br>
+                <p >Retrieve Disguise rank {this.state.rank2retrieve} index {this.state.idx2retrieve}</p>
                 <input
                     type='text' size='2'
-                    value={!(this.state.retrieved) ? "" : this.state.rank2retrieve}
                     onChange={this.myChangeHandler}
-                    onClick={this.myClickHandler}
                 />
                 <input
                     type='submit' value='Retrieve this disguise from blockchain'
