@@ -1,5 +1,7 @@
 # ETHDenver2021
-Machu Picchu entry for ETHDenver 2021
+Machu Picchu entry for ETHDenver 2021.
+
+This version has a bug that is corrected in the `main` branch: it crashes if you retrieve a disguise before you stored at least one. This is because the table of disguise addresses is not retrieved when you connect to the blockchain but only after you store a disguise.
 ## Contributing, from members of the Buidlathon team
 * Fork the repository to your own github
 * Clone your repo to your local workstation and work from there; the main folder is `<your folder>/ETHDenver2021/Pepito`
@@ -19,11 +21,11 @@ The need to share data among humanitarians is recognized. The addressable market
 The ultimate achievement is to make an inclusive DEX where the persons in need may swap the humanitarian tokens that they received from different organisations (for example Red Cross, UNICEF, World Food Program, etc.) and obtain a significant bundle of a single tokens that can be redeemed against medicaments, schoolbooks, agriculture tools etc.
 
 ## Business Model
-![Business Model](https://github.com/Machu-Pichu/ETHDenver2021/blob/main/20210206%20Machu%20Picchu%20Business%20Model.png)
+![Business Model](./20210206%20Machu%20Picchu%20Business%20Model.png)
 
 ## Vision of Technical Stack
 A vision of the complete Technical Stack that can be used for _Machu Picchu_ is, in January 2021 **and if we have 2-3 M$ immediately available** :-)
-![Technical Stack](https://github.com/Machu-Pichu/ETHDenver2021/blob/main/20210206%20Machu%20Picchu%20Tech%20Stack.png)
+![Technical Stack](./20210206%20Machu%20Picchu%20Tech%20Stack.png)
 
 ## Pepito
 Pepito is the entry of _Machu Picchu_ to the ETH Denver 2021 Buidlathon. It is the demonstrator of how the personal data of the user in need can be stored. To make the blockchain more friendly to decision makers of helper organisations, instead of a boring user KYC data screen, we generate a disguise and store it.

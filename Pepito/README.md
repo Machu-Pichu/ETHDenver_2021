@@ -6,7 +6,7 @@
 
 In this game, your mission is to build a disguise for Pepito, from [a set of existing components](https://avataaars.com/). Once you built this disguise, you'll record it on the blockchain so that Pepito is sure he'll not reuse it again and will never take twice the same disguise.
 
-![Target look](https://github.com/kvutien/Machu-Picchu/blob/main/20201128%20Avatars.jpeg)
+![Target look](../20201128%20Avatars.jpeg)
 
 Actually, our real purpose in _Machu Picchu_ is to build a blockchain-based tool to manage personal data of persons-in-need worldwide and the financial humanitarian assistance tokens that helper organisations would give to these persons-in-need. These tokens can be exchanged and bundled in a DEX until their owner have enough tokens that it becomes cost-effective to exchange then into fiat money. More info here: [ConsenSys Academy graduation days](https://youtu.be/9fWTD8gf-Us).
 
@@ -39,7 +39,7 @@ The amount of "Cash Voucher Assistance" (CVA) totalled $5.6bn in 2019, doubling 
 ## Smart contract backend design
 In the following we'll specify and code a dApp to help you in this mission generating disguises for Pepito. But keep this in mind: behind this game, by simply modifying a few lines of code, each disguise can become actually a set of characteristics of a person-in-need that humanitarians can help. Because the blockchain is open, once persons-in-need are recorded, all humanitarian organisations can access the data, and these persons keep full control on these personal data.
 
-![Backend](https://github.com/kvutien/Machu-Picchu/blob/main/Pepito/Final%20Project%20Design.png)
+![Backend](./Final%20Project%20Design.png)
 
 **As part of future design**, to allow a simple SMS-based signature by the person-in-need while preserving security, we are considering the use of a multisignature pattern, shared between the persons-in-need and the chief of village (the "Factory"). The person-in-need will sign with an OTP and a simple mobile phone. The chief of village will have a tablet or smartphone and will sign with the wallet private key.
 
@@ -51,7 +51,7 @@ The frontend of _Machu Picchu_ is derived from Truffle Box React. As compared to
 
 We can also derive Pepito into a true humanitarian organisation management system without disrupting the code.
 
-![Frontend](https://github.com/kvutien/Machu-Picchu/blob/main/Pepito/Final%20Project%20React.png)
+![Frontend](./Final%20Project%20React.png)
 
 # Directory structure
 ```
