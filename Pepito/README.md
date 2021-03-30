@@ -29,17 +29,17 @@ CELO interests _Machu Picchu_  because
 ## Smart contract backend design
 In the following we'll specify and code a dApp to help you in this mission generating disguises for Pepito. But keep this in mind: behind this game, by simply modifying a few lines of code, each disguise can become actually a set of characteristics of a person-in-need that humanitarians can help. Because the blockchain is open, once persons-in-need are recorded, all humanitarian organisations can access the data, and these persons keep full control on these personal data.
 
-![Backend](https://github.com/kvutien/Machu-Picchu/blob/main/Pepito/Final%20Project%20Design.png)
+![Backend](./Final%20Project%20Design.png)
 
 ## React Frontend design
-The frontend of _Machu Picchu_ is derived from Truffle Box React. As compared to the version submitted in December, the `App.js` is reduced to the minimum. All important actions are in distinct React components. We can now improve gradually each function without impacting the others: 
+The frontend of _Machu Picchu_ is derived from Truffle Box React. The `App.js` is reduced to the minimum. All important actions are in distinct React components. We can now improve gradually each function without impacting the others: 
 * how to generate disguises,
 *  how to store disguises (blockchain or IPFS or OrbitDB or Textile), 
 *  how to retrieve a disguise, modify it and store back
 
 We can also derive Pepito into a true humanitarian organisation management system without disrupting the code.
 
-![Frontend](https://github.com/kvutien/Machu-Picchu/blob/main/Pepito/Final%20Project%20React.png)
+![Frontend](./Final%20Project%20React.png)
 
 
 ## Credits

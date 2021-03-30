@@ -1,5 +1,5 @@
 # ETH Denver 2021
-Update of 2021-02-05
+Update of 2021-02-05, no more relevant after the hackathon
 * confirmed members
   * Vu Tien Khang ("Vutien"): _Space System Architect, 45 years of experience (yes :-), Luxembourg React, Solidity, Web3, Nodejs + Earth Observation & Telecoms_
   * Duke Silver ("Rajan"): _I am a Sr. Java Developer working in Chicago currently. I can code all Java Stack and all the popular DB's. I started learning Ethereum stack 6 months back and got certified. I can work with Solidity, IPFS, Truffle, Infura and all that core ethereum stuff._
@@ -48,7 +48,8 @@ The plan would be to
 4. ~~... and/or **use Ceramic** to describe the data model **and IDX** for identity, but this might collide with Celo~~  
 5. ~~make the **Pepito frontend more sexy** and add a dialog to update the features of a PepitoDisguise and store again. Here someone React+IPFS/Textile/OrbitDB~~
 6. ~~Add a **mobile frontend using the Valora mobile** API of Celo (cherry over the cake, IMHO in 1 week we'll not have time~~
-7. ~~another cherry on the cake, **use TheGraph to query the database**, but we'll certainly not have time, unless you have the code ready somewhere~~
+7. ~~Use Twilio service to generate one time password for the person in need, cross confirm by double signature by the helper organisation [https://github.com/twilio-labs/function-templates/tree/main/verify](https://github.com/twilio-labs/function-templates/tree/main/verify)~~
+8. ~~another cherry on the cake, **use TheGraph to query the database**, but we'll certainly not have time, unless you have the code ready somewhere~~
    
 ## List of bounties
 [https://www.ethdenver.com/bounties](https://www.ethdenver.com/bounties)

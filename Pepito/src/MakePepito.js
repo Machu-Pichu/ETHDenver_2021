@@ -9,13 +9,13 @@ import Pepito from "./contracts_abi/Pepito.json";   // to call web3 API
 import './App.css';
 import secret from './.secret';
 
-const fs = require('fs');
-const path = require("path");    // used to direct creation of ABI in another directory than default
+// const fs = require('fs');
+// const path = require("path");    // used to direct creation of ABI in another directory than default
 const Web3 = require('web3')
 const ContractKit = require('@celo/contractkit')
 const web3 = new Web3('https://alfajores-forno.celo-testnet.org')
 const kit = ContractKit.newKitFromWeb3(web3)
-const getAccount = require('./getAccount').getAccount
+//  const getAccount = require('./getAccount').getAccount
 let privatek;
 let account;
 
@@ -33,6 +33,8 @@ class MakePepito extends React.Component{
     .then(r => r.text())
     .then(text => {
       privatek = text;
+      privatek = '0x92306a3bac37d6e7cc4928152bd7e7d00858421d0b9aca57f3783922cc794a9e';  // temporary hack to deploy in production 
+      //console.log('- MakePepito from .secret privatekey', privatek);
     });
   }
 

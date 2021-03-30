@@ -1,6 +1,6 @@
 # ETHDenver2021
 
-Machu Picchu entry for ETHDenver 2021
+Machu Picchu entry for ETHDenver 2021 Feb 2021, updated Mar 2021.
 ## Contributing
 * Fork the repository to your own github
 * Clone your repo to your local workstation and work from there; the main folder is `<your folder>/ETHDenver2021/Pepito`
@@ -10,6 +10,7 @@ Machu Picchu entry for ETHDenver 2021
 1. Code: [Machu Picchu entry for ETHDenver 2021](https://github.com/Machu-Pichu/ETHDenver_2021/tree/main/Pepito)
 2. Video: [https://www.youtube.com/watch?v=XyRA4lQtvQs](https://www.youtube.com/watch?v=XyRA4lQtvQs)
 3. Pitch deck: [https://docs.google.com/presentation/d/1I_tdluxRyoShOSUdQ-A_UHwGV7LZJBtlCzPSaVvxYpE](https://docs.google.com/presentation/d/1I_tdluxRyoShOSUdQ-A_UHwGV7LZJBtlCzPSaVvxYpE)
+4. Public demo hosted on Netlify [https://hungry-montalcini-2618fa.netlify.app/](https://hungry-montalcini-2618fa.netlify.app/)
 
 
 ## Contact
@@ -33,7 +34,7 @@ A vision of the complete Technical Stack that can be used for _Machu Picchu_ is,
 ![Technical Stack](./20210206%20Machu%20Picchu%20Tech%20Stack.png)
 
 ## Pepito
-[Pepito is the entry of _Machu Picchu_ to the ETH Denver 2021 Buidlathon](https://github.com/Machu-Pichu/ETHDenver_2021/tree/main/Pepito). It is the demonstrator of how the personal data of the person-in-need can be stored. To make the blockchain more friendly to decision makers of helper organisations, instead of a boring user KYC data screen, we generate a disguise and store it. It constitute the "*Trust Engine*" at the bottom left of the Machu Picchu Technical Stack.
+[Pepito is the entry of _Machu Picchu_ to the ETH Denver 2021 Buidlathon](https://github.com/Machu-Pichu/ETHDenver_2021/tree/main/Pepito). It is the demonstrator of how the personal data of the person-in-need can be stored. To make the blockchain more friendly to decision makers of helper organisations, instead of a boring user KYC data screen, we generate a disguise and store it. It constitutes the "*Trust Engine*" at the bottom left of the Machu Picchu Technical Stack.
 
 ## Beyond Pepito…
 Because of the technical background of [Vu Tien Khang](https://www.linkedin.com/in/kvutien/) as Data Science, Earth Observation, on top of Space and Telecoms, our vision is to add collaborative data analysis tools, Geographical Information System mapping tools, and [Earth Observation tools](https://ibisa.users.earthengine.app/view/mcgyver3) to monitor crops and natural disasters. This will be started once Pepito has 10'000-50'000 persons to manage, provided funding is available.
@@ -46,7 +47,12 @@ Because of the technical background of [Vu Tien Khang](https://www.linkedin.com/
 * ~~Use the Celo Valora mobile wallet~~
 * ~~Implement the frontend dialogue on mobile~~
 
-## Instructions
+## Instructions to run the public frontend, backend already deployed
+Tested on Chrome, Mozilla Firefox and Safari.
+
+Open the Public demo hosted on Netlify [https://hungry-montalcini-2618fa.netlify.app/](https://hungry-montalcini-2618fa.netlify.app/)
+
+## Instructions to install backend and run locally the front end
 
 Pre-requesites: [NodeJS](https://nodejs.dev/learn/how-to-install-nodejs) & [Truffle](https://www.trufflesuite.com/docs/truffle/getting-started/installation)
 
@@ -57,7 +63,8 @@ Pre-requesites: [NodeJS](https://nodejs.dev/learn/how-to-install-nodejs) & [Truf
 3. `cd` to `ETHDenver_2021/Pepito/src` and create your own CELO testnet crypto account to pay the blockchain fees of the demo: run 
 	`node createAccount.js`
 4.	... this creates a new CELO test account and displays the account address on the console. Copy this account adddress
-5. Go to Alfajores test faucet and fund the account by pasting the address you just copied, answer the CAPTCHA and click on "Get Started":
+5. In the same `src` folder, in `MakePepito.js`, remove the line 36 that hard codes the address, to use rather the one stored in file `.secret`
+6. Go to Alfajores test faucet and fund the account by pasting the address you just copied, answer the CAPTCHA and click on "Get Started":
 	https://celo.org/developers/faucet
 6. Deploy the smart contracts (_migrate the project_) on Alfajores test network: `cd` to the folder `ETHDenver_2021/Pepito` and run 
 	`truffle migrate --network alfajores --reset` 

@@ -25,7 +25,7 @@ const Web3 = require('web3')
 const ContractKit = require('@celo/contractkit')
 const web3 = new Web3('https://alfajores-forno.celo-testnet.org')
 const kit = ContractKit.newKitFromWeb3(web3)
-const getAccount = require('./client/src/getAccount').getAccount
+const getAccount = require('./src/getAccount').getAccount
 
 async function awaitWrapper(){
     let account = await getAccount()
@@ -38,7 +38,7 @@ awaitWrapper()
 module.exports = {
 
   // ask to create ABI in another directory than default, for React
-  contracts_build_directory: path.join(__dirname, "client/src/contracts_abi"),
+  contracts_build_directory: path.join(__dirname, "src/contracts_abi"),
 
   /**
    * Networks define how you connect to your ethereum client and let you set the
